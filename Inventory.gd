@@ -74,8 +74,8 @@ func _process(delta):
 			print("dropping item")
 			held_item = null
 	
-	item_clicked_this_frame = null;
-	cell_index_clicked_this_frame = null;
-	grid_cell_clicked_this_frame
-	clicked_this_frame = false;
+	item_clicked_this_frame = null
+	cell_index_clicked_this_frame = null
+	grid_cell_clicked_this_frame = null
+	clicked_this_frame = false
 	pass
