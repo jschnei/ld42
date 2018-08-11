@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://InventoryGrid.gd" type="Script" id=1]
+
+[node name="InventoryGrid" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+CELL_SIZE = 100
+HEIGHT = 3
+WIDTH = 3
+
+
