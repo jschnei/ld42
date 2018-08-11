@@ -38,7 +38,7 @@ func _item_clicked_on(cell_index, item):
 	
 	
 
-# x, y is row, column of the grid "matrix"		
+# v is vector of the grid "matrix" clicked		
 func _grid_clicked_on(v):
 	grid_cell_clicked_this_frame = v
 	

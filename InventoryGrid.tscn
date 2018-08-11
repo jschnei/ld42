@@ -2,9 +2,10 @@
 
 [ext_resource path="res://InventoryGrid.gd" type="Script" id=1]
 
-[node name="InventoryGrid" type="Node2D"]
+[node name="InventoryGrid" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 CELL_SIZE = 60
 HEIGHT = 4
 WIDTH = 4
