@@ -11,7 +11,7 @@ var item_cell = preload("res://ItemCell.tscn")
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	init([[1, 1]])
+	init([[1, 1], [1, 2]])
 	
 func init(point_list):
 	for i in range(len(point_list)):

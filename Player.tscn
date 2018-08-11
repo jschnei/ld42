@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/player.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -9,7 +11,7 @@ extents = Vector2( 22.2804, 20.6733 )
 
 [node name="Player" type="KinematicBody2D" index="0"]
 
-position = Vector2( 391.578, 247.268 )
+position = Vector2( 531.873, 300.714 )
 input_pickable = true
 collision_layer = 1
 collision_mask = 3
@@ -17,29 +19,19 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
 SPEED = 100
+Bullet = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Polygon2D" type="Polygon2D" parent="." index="1"]
+[node name="Camera2D" type="Camera2D" parent="." index="1"]
 
-polygon = PoolVector2Array( 25, 25, -25, 25, -25, -25, 25, -25 )
-uv = PoolVector2Array(  )
-color = Color( 0.960938, 0.033783, 0.033783, 1 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
-
+offset = Vector2( 0, -100 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -55,12 +47,25 @@ smoothing_enabled = false
 smoothing_speed = 5.0
 offset_v = 0.0
 offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
+drag_margin_left = 0.8
+drag_margin_top = 0.8
+drag_margin_right = 0.8
+drag_margin_bottom = 0.5
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Limit", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bullets" type="Node" parent="." index="3"]
 
 
