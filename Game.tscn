@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
-[ext_resource path="res://art/floor.png" type="Texture" id=2]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://art/space.png" type="Texture" id=2]
+[ext_resource path="res://art/floor.png" type="Texture" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://EncroachingDoom.tscn" type="PackedScene" id=6]
 
 [node name="Game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+catchup_margin = 400
 
 [node name="Space" type="ParallaxBackground" parent="." index="0"]
 
@@ -26,26 +29,39 @@ _sections_unfolded = [ "Scroll" ]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Space" index="0"]
 
-motion_scale = Vector2( 1, 1 )
+motion_scale = Vector2( 1, 0.5 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 0, 0 )
-_sections_unfolded = [ "Material", "Transform", "Z Index" ]
+_sections_unfolded = [ "Material", "Motion", "Transform", "Z Index" ]
+
+[node name="Sprite" type="Sprite" parent="Space/ParallaxLayer" index="0"]
+
+position = Vector2( 282.292, 38.9717 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1000, 10000 )
+_sections_unfolded = [ "Region", "Transform" ]
 
 [node name="Floor" type="Sprite" parent="." index="1"]
 
-position = Vector2( 266.489, 288.696 )
-texture = ExtResource( 2 )
+position = Vector2( 250, 250 )
+texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 300, 100000 )
+region_rect = Rect2( 0, 0, 400, 100000 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="Player" parent="." index="2" instance=ExtResource( 3 )]
+[node name="Player" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 289.067, 419.149 )
 
-[node name="Wall" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Wall" parent="." index="3" instance=ExtResource( 5 )]
 
-position = Vector2( 216.951, 513.389 )
+position = Vector2( 175.108, 279.07 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="EncroachingDoom" parent="." index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 250, 600 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 

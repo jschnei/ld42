@@ -30,4 +30,6 @@ func _process(delta):
 			$bullets.add_child(bullet)
 	
 	move_and_slide(SPEED*input_dir)
-	
+
+func doomify():
+	queue_free()
