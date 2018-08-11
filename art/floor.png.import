@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/floor.png-f9cc33924475e04750e8c43aaa181733.stex"
 
 [deps]
 
-source_file="res://icon.png"
-source_md5="ae7e641067601e2184afcade49abd283"
+source_file="res://art/floor.png"
+source_md5="5fdba268588ae76bcdc5906f516e4c85"
 
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
-dest_md5="84511021bbc8c9d37c7f0f4d181de883"
+dest_files=[ "res://.import/floor.png-f9cc33924475e04750e8c43aaa181733.stex" ]
+dest_md5="de4283e62122ae76a2efde8a240e1d64"
 
 [params]
 
@@ -18,7 +18,7 @@ compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=2
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
