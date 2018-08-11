@@ -9,7 +9,29 @@
 
 script = ExtResource( 1 )
 
-[node name="Floor" type="Sprite" parent="." index="0"]
+[node name="Space" type="ParallaxBackground" parent="." index="0"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = false
+_sections_unfolded = [ "Scroll" ]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Space" index="0"]
+
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Material", "Transform", "Z Index" ]
+
+[node name="Floor" type="Sprite" parent="." index="1"]
 
 position = Vector2( 266.489, 288.696 )
 texture = ExtResource( 2 )
@@ -17,11 +39,11 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 300, 100000 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
+[node name="Player" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 289.067, 419.149 )
 
-[node name="Wall" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Wall" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 216.951, 513.389 )
 _sections_unfolded = [ "Collision", "Transform" ]
