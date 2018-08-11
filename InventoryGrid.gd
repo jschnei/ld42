@@ -30,14 +30,10 @@ func _ready():
 		grid_contents.append(empty_row)
 
 func create_and_add_cell(v):	
-	var polygon = [CELL_SIZE * v,
-				   CELL_SIZE * (v + Vector2(0, 1)),
-				   CELL_SIZE * (v + Vector2(1, 1)),
-				   CELL_SIZE * (v + Vector2(1, 0))]
-				
-	# NOTE: this is just a hack to make grid borders clearer, we should get rid of this
-	for i in len(polygon):
-		polygon[i] += v
+	var polygon = [CELL_SIZE * (v + Vector2(0.05, 0.05)),
+				   CELL_SIZE * (v + Vector2(0.05, 0.95)),
+				   CELL_SIZE * (v + Vector2(0.95, 0.95)),
+				   CELL_SIZE * (v + Vector2(0.95, 0.05))]
 		
 	var new_cell = inventory_cell.instance()
 	new_cell.get_node("Polygon2D").polygon = polygon
