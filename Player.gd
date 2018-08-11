@@ -20,6 +20,5 @@ func _process(delta):
 	elif Input.is_action_pressed("ui_down"):
 		input_dir += Vector2(0, 1)
 	
-	
 	move_and_slide(SPEED*input_dir)
 	

@@ -7,15 +7,15 @@
 custom_solver_bias = 0.0
 extents = Vector2( 22.2804, 20.6733 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 391.578, 247.268 )
 input_pickable = true
 collision_layer = 1
-collision_mask = 1
+collision_mask = 3
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 SPEED = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
