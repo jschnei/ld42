@@ -47,8 +47,12 @@ func _cell_clicked_on(i, j):
 # item can be placed in the grid so that the item base point coincides with
 # the grid base point and doesn't intersect with any existing items.
 func is_item_placeable(item, item_base_point, grid_base_point):
-	# TODO: this needs to be implemented
-	return false
+	for cell in item.cell_point_list:
+		var x = cell[0] - item_base_point[0] + grid_base_point[0]
+		var y = cell[1] - item_base_point[1] + grid_base_point[0]
+		if not grid_contents[x][y] == null:
+			return false 
+	return true
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
