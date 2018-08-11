@@ -22,7 +22,7 @@ func init(point_list):
 func create_and_add_cell(point):
 	var x = point[0]
 	var y = point[1]
-	cell_point_list.append([x, y])
+	cell_point_list.append(Vector2(x, y))
 	
 	var polygon = [Vector2(CELL_SIZE*x, CELL_SIZE*y),
 				   Vector2(CELL_SIZE*x, CELL_SIZE*y + CELL_SIZE),

@@ -63,12 +63,15 @@ func _process(delta):
 			print("now holding item")
 			held_item = item_clicked_this_frame
 			held_item_cell = cell_index_clicked_this_frame
+			if held_item in grid.items_in_grid:
+				grid.remove_item(held_item)
 		elif cell_clicked_this_frame_x != null: 
 			print("clicked on grid ", cell_clicked_this_frame_x, cell_clicked_this_frame_y)
 			if held_item != null:
-				if grid.is_item_placeable(held_item, held_item.point_at(held_item_cell), [cell_clicked_this_frame_x, cell_clicked_this_frame_y]):
+				if grid.is_item_placeable(held_item, held_item.point_at(held_item_cell), Vector2(cell_clicked_this_frame_x, cell_clicked_this_frame_y)):
 					# TODO: place the item in the grid
-					pass
+					grid.place_item(held_item, held_item.point_at(held_item_cell), Vector2(cell_clicked_this_frame_x, cell_clicked_this_frame_y))
+					held_item = null
 		elif held_item != null:
 			print("dropping item")
 			held_item = null

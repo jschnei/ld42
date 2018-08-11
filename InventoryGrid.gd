@@ -73,6 +73,8 @@ func place_item(item, item_base_point, grid_base_point):
 		var x = cell[0] - item_base_point[0] + grid_base_point[0]
 		var y = cell[1] - item_base_point[1] + grid_base_point[0]
 		grid_contents[x][y] = item
+	
+	item.position = position + (grid_base_point - item_base_point) * CELL_SIZE
 		
 func remove_item(item):
 	assert item in items_in_grid
