@@ -1,11 +1,9 @@
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
 var left_wall 
 var right_wall
+
+export (float) var catchup_margin = 400
 
 func _ready():
 	left_wall = $Floor.position.x - $Floor.region_rect.end.x/2
@@ -13,4 +11,8 @@ func _ready():
 
 func _process(delta):
 	$Player.position.x = clamp($Player.position.x, left_wall, right_wall)
-	pass
+	
+	if $Player.position.y < $EncroachingDoom.position.y - catchup_margin:
+		$EncroachingDoom.speed = $EncroachingDoom.catchup_speed
+	else:
+		$EncroachingDoom.speed = $EncroachingDoom.normal_speed

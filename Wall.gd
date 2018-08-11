@@ -12,3 +12,7 @@ func _ready():
 func take_damage(damage):
 	if damage > 0:
 		queue_free()
+		
+
+func doomify():
+	queue_free()

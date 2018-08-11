@@ -29,5 +29,7 @@ func _process(delta):
 			bullet.position = position
 			$bullets.add_child(bullet)
 	
-	move_and_slide(SPEED*input_dir)
-	
+	move_and_slide(SPEED*(input_dir.normalized()))
+
+func doomify():
+	queue_free()
