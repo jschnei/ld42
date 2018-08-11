@@ -15,12 +15,20 @@ var grid_contents = []
 var items_in_grid = []
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	for i in range(WIDTH):
 		for j in range(HEIGHT):
 			var new_cell = create_and_add_cell(i, j)
 			new_cell.connect("clicked_on", self, "_cell_clicked_on", [i, j])
+	
+	# Note that i, j is swapped here. This is because I want the cell
+	# (x, y) to correspond to the xth column and yth row (because that
+	# is how pixels work), but in grid_contents matrix (x,y) would be
+	# the xth row and yth column.	
+	for i in range(HEIGHT):
+		var empty_row = []
+		for j in range(WIDTH):
+			empty_row.append(null)
+		grid_contents.append(empty_row)
 
 func create_and_add_cell(x, y):	
 	var polygon = [Vector2(CELL_SIZE*x, CELL_SIZE*y),
@@ -50,9 +58,30 @@ func is_item_placeable(item, item_base_point, grid_base_point):
 	for cell in item.cell_point_list:
 		var x = cell[0] - item_base_point[0] + grid_base_point[0]
 		var y = cell[1] - item_base_point[1] + grid_base_point[0]
+		if x < 0 or y < 0 or x >= HEIGHT or y >= WIDTH:
+			return false
 		if not grid_contents[x][y] == null:
 			return false 
 	return true
+	
+func place_item(item, item_base_point, grid_base_point):
+	assert is_item_placeable(item, item_base_point, grid_base_point)
+	assert not item in items_in_grid
+	
+	items_in_grid.append(item)
+	for cell in item.cell_point_list:
+		var x = cell[0] - item_base_point[0] + grid_base_point[0]
+		var y = cell[1] - item_base_point[1] + grid_base_point[0]
+		grid_contents[x][y] = item
+		
+func remove_item(item):
+	assert item in items_in_grid
+	
+	for i in range(HEIGHT):
+		for j in range(WIDTH):
+			if grid_contents[i][j] == item:
+				grid_contents[i][j] = null
+	items_in_grid.erase(item)
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
