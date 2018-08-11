@@ -4,6 +4,7 @@ extends Area2D
 # var a = 2
 # var b = "textvar"
 signal clicked_on
+signal released
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -16,7 +17,8 @@ func _process(delta):
 	pass
 	
 func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.is_pressed():
-		if event.button_index == BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		if event.is_pressed():
 			emit_signal('clicked_on')
-		
+		else:
+			emit_signal('released')

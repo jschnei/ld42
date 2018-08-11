@@ -5,11 +5,13 @@ var inventory_grid = preload("res://InventoryGrid.tscn")
 
 var held_item = null
 var held_item_cell = 0
+var time_held = 0
 
-var item_clicked_this_frame = null;
-var cell_index_clicked_this_frame = null;
-var grid_cell_clicked_this_frame = null;
-var clicked_this_frame = false;
+var item_clicked_this_frame = null
+var cell_index_clicked_this_frame = null
+var grid_cell_clicked_this_frame = null
+var clicked_this_frame = false
+var released_this_frame = false
 
 var grid = null
 
@@ -28,6 +30,7 @@ func _ready():
 	grid = inventory_grid.instance()
 	grid.position = Vector2(500, 300)
 	grid.connect("clicked_on", self, "_grid_clicked_on")
+	grid.connect("released", self, "_grid_released")
 	add_child(grid)
 		
 func _item_clicked_on(cell_index, item):
@@ -42,6 +45,8 @@ func _item_clicked_on(cell_index, item):
 func _grid_clicked_on(v):
 	grid_cell_clicked_this_frame = v
 	
+func _grid_released(v):
+	grid_cell_clicked_this_frame = v
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -50,32 +55,45 @@ func _input(event):
 			# It would probably be best to always move the item so that the
 			# center of the clicked item cell follows the mouse.
 			held_item.position = get_local_mouse_position() - (held_item.point_at(held_item_cell) + Vector2(0.5, 0.5)) * grid.CELL_SIZE
-	elif event is InputEventMouseButton:
-		clicked_this_frame = clicked_this_frame or event.pressed
+	elif event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		if event.pressed:
+			clicked_this_frame = true
+		else:
+			released_this_frame = true
+
+func drop():
+	if grid_cell_clicked_this_frame != null:
+		print("clicked on grid ", grid_cell_clicked_this_frame)
+		if held_item != null:
+			if grid.is_item_placeable(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame):
+				# TODO: place the item in the grid
+				grid.place_item(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame)
+				held_item = null
+	elif held_item != null:
+		print("dropping item")
+		held_item = null
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.
 	if clicked_this_frame:
+		time_held = 0
 		if item_clicked_this_frame != null and held_item == null:
 			print("now holding item")
 			held_item = item_clicked_this_frame
 			held_item_cell = cell_index_clicked_this_frame
 			if held_item in grid.items_in_grid:
 				grid.remove_item(held_item)
-		elif grid_cell_clicked_this_frame != null: 
-			print("clicked on grid ", grid_cell_clicked_this_frame)
-			if held_item != null:
-				if grid.is_item_placeable(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame):
-					# TODO: place the item in the grid
-					grid.place_item(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame)
-					held_item = null
-		elif held_item != null:
-			print("dropping item")
-			held_item = null
+		else:
+			drop()
+	elif released_this_frame and time_held >= 0.17:
+		drop()
+			
 	
 	item_clicked_this_frame = null
 	cell_index_clicked_this_frame = null
 	grid_cell_clicked_this_frame = null
 	clicked_this_frame = false
+	released_this_frame = false
+	time_held += delta
 	pass
