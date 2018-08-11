@@ -3,9 +3,14 @@ extends Node2D
 var item = preload("res://Item.tscn")
 var inventory_grid = preload("res://InventoryGrid.tscn")
 
-var is_holding_item = false
 var held_item = null
 var held_item_cell = 0
+
+var item_clicked_this_frame = null;
+var cell_index_clicked_this_frame = null;
+var cell_clicked_this_frame_x = null;
+var cell_clicked_this_frame_y = null;
+var clicked_this_frame = false;
 
 var grid = null
 
@@ -29,34 +34,48 @@ func _ready():
 func _item_clicked_on(cell_index, item):
 	# print(cell_index)
 	# print(item.point_at(cell_index))
-	if is_holding_item and held_item == item:
-		print("dropping item")
-		is_holding_item = false
-		held_item = null
-	elif not is_holding_item:
-		print("now holding item")
-		is_holding_item = true
-		held_item = item
-		held_item_cell = cell_index
+	item_clicked_this_frame = item
+	cell_index_clicked_this_frame = cell_index
+	
+	
 
 # x, y is row, column of the grid "matrix"		
 func _grid_clicked_on(x, y):
-	print("clicked on grid ", x, y)
-	if is_holding_item:
-		if grid.is_item_placeable(held_item, held_item.point_at(held_item_cell), [x, y]):
-			# TODO: place the item in the grid
-			pass
-	pass
+	cell_clicked_this_frame_x = x
+	cell_clicked_this_frame_y = y
+	
 
 func _input(event):
-	if is_holding_item:
-		if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion:
+		if held_item != null:
 			# TODO: this seems to go out of sync if you move the mouse really quickly
 			# It would probably be best to always move the item so that the
 			# center of the clicked item cell follows the mouse.
 			held_item.position = held_item.position + event.relative
+	elif event is InputEventMouseButton:
+		clicked_this_frame = clicked_this_frame or event.pressed
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process(delta):
+	# Called every frame. Delta is time since last frame.
+	# Update game logic here.
+	if clicked_this_frame:
+		if item_clicked_this_frame != null and held_item == null:
+			print("now holding item")
+			held_item = item_clicked_this_frame
+			held_item_cell = cell_index_clicked_this_frame
+		elif cell_clicked_this_frame_x != null: 
+			print("clicked on grid ", cell_clicked_this_frame_x, cell_clicked_this_frame_y)
+			if held_item != null:
+				if grid.is_item_placeable(held_item, held_item.point_at(held_item_cell), [cell_clicked_this_frame_x, cell_clicked_this_frame_y]):
+					# TODO: place the item in the grid
+					pass
+		elif held_item != null:
+			print("dropping item")
+			held_item = null
+	
+	item_clicked_this_frame = null;
+	cell_index_clicked_this_frame = null;
+	cell_clicked_this_frame_x = null;
+	cell_clicked_this_frame_y = null;
+	clicked_this_frame = false;
+	pass
