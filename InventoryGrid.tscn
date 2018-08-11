@@ -2,11 +2,11 @@
 
 [ext_resource path="res://InventoryGrid.gd" type="Script" id=1]
 
-[node name="InventoryGrid" type="Node2D" index="0"]
+[node name="InventoryGrid" type="Node2D"]
 
 script = ExtResource( 1 )
-CELL_SIZE = 100
-HEIGHT = 3
-WIDTH = 3
+CELL_SIZE = 60
+HEIGHT = 4
+WIDTH = 4
 
 
