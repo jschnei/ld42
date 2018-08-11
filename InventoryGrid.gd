@@ -1,6 +1,7 @@
 extends Node2D
 
-signal clicked_on(x, y)
+signal clicked_on(v)
+signal released(v)
 
 export (int) var CELL_SIZE
 export (int) var HEIGHT
@@ -20,6 +21,7 @@ func _ready():
 			var v = Vector2(i, j)
 			var new_cell = create_and_add_cell(v)
 			new_cell.connect("clicked_on", self, "_cell_clicked_on", [v])
+			new_cell.connect("released", self, "_cell_released", [v])
 	
 	# In grid_contents matrix (x,y) would be
 	# the xth column and yth row.	
@@ -44,6 +46,9 @@ func create_and_add_cell(v):
 	
 func _cell_clicked_on(v):
 	emit_signal("clicked_on", v)
+	
+func _cell_released(v):
+	emit_signal("released", v)
 	
 # Given an item (which contains a list of lattice points, cell_point_list),
 # a "base point" in the item list, and a point in the grid, return if the
