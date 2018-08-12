@@ -3,6 +3,10 @@ extends KinematicBody2D
 onready var target = get_parent().get_parent().get_node("Player")
 export (PackedScene) var EnemyBullet = preload("EnemyBullet.tscn")
 
+signal dropped_item
+
+var item_to_drop = null
+
 func _ready():
 	pass
 
@@ -18,6 +22,7 @@ func _process(delta):
 	position.x = clamp(position.x, game.left_wall, game.right_wall)
 
 func _on_Stats_death():
+	emit_signal("dropped_item")
 	queue_free()
 
 func _on_ShotTimer_timeout():

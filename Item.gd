@@ -8,7 +8,6 @@ var cell_point_list = []
 var item_cell = preload("res://ItemCell.tscn")
 
 func _ready():
-	$ItemStats.bonus_attack = 1
 	pass
 
 func point_at(cell_index):
