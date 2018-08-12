@@ -82,20 +82,23 @@ func _input(event):
 			clicked_this_frame = true
 		else:
 			released_this_frame = true
+	elif event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
+		if event.pressed and held_item != null:
+			trash_held_item()
 
 func drop():
+	if held_item == null:
+		return
+		
 	if grid_cell_clicked_this_frame != null:
-		print("clicked on grid ", grid_cell_clicked_this_frame)
-		if held_item != null:
-			if grid.can_place_item(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame):
-				grid.place_item(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame)
-				held_item = null
+		if grid.can_place_item(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame):
+			grid.place_item(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame)
+			held_item = null
 	elif holding_area_clicked_this_frame:
-		if held_item != null:
-			if holding_area.can_place_item():
-				holding_area.place_item(held_item)
-				held_item = null
-	elif held_item != null:
+		if holding_area.can_place_item():
+			holding_area.place_item(held_item)
+			held_item = null
+	else:
 		restore_saved_item(held_item)
 		held_item = null
 
@@ -126,6 +129,10 @@ func restore_saved_item(item):
 	else:
 		print("unknown previous location of item, dropping in place")
 		pass
+
+func trash_held_item():
+	held_item.queue_free()
+	held_item = null
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
