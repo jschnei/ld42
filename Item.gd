@@ -33,6 +33,25 @@ func create_and_add_cell(point):
 	add_child(new_cell)
 	return new_cell
 	
+# Returns a vector with the (x,y) pixel coordinates of the "center"
+# of the item. Used for centering the item in the holding area.
+func center_point():
+	var min_x = cell_point_list[0].x
+	var max_x = cell_point_list[0].x
+	var min_y = cell_point_list[0].y
+	var max_y = cell_point_list[0].y
+	for point in cell_point_list:
+		if point.x < min_x:
+			min_x = point.x
+		if point.x > max_x:
+			max_x = point.x
+		if point.y < min_y:
+			min_y = point.y
+		if point.y > max_y:
+			max_y = point.y
+	var center_point = Vector2((max_x+min_x+1)/2, (max_y+min_y+1)/2)
+	return center_point * CELL_SIZE
+	
 func _cell_clicked_on(index):
 	emit_signal("clicked_on", index)
 
