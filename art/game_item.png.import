@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/doom_head.png-a52b52fa0fa30b4262834dff4cbfc49a.stex"
+path="res://.import/game_item.png-3c356d3afb3eb237ecb49b8edb14276c.stex"
 
 [deps]
 
-source_file="res://art/doom_head.png"
-source_md5="b71c9594587891ef4accfd355d172d39"
+source_file="res://art/game_item.png"
+source_md5="af23825027f329e1b6e16929d1127aec"
 
-dest_files=[ "res://.import/doom_head.png-a52b52fa0fa30b4262834dff4cbfc49a.stex" ]
-dest_md5="2dbbe276e452443af4318d3c9c0db96b"
+dest_files=[ "res://.import/game_item.png-3c356d3afb3eb237ecb49b8edb14276c.stex" ]
+dest_md5="d61986d685906324374518f67e4abebf"
 
 [params]
 
@@ -18,7 +18,7 @@ compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
-flags/repeat=2
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

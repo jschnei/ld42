@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://art/space.png" type="Texture" id=2]
 [ext_resource path="res://art/floor.png" type="Texture" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Wall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://EncroachingDoom.tscn" type="PackedScene" id=6]
+[ext_resource path="res://EncroachingDoom.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://MovingEnemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GameItem.tscn" type="PackedScene" id=8]
 
 [node name="Game" type="Node2D" index="0"]
 
@@ -54,14 +56,25 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 position = Vector2( 289.067, 419.149 )
 
-[node name="Wall" parent="." index="3" instance=ExtResource( 5 )]
-
-position = Vector2( 175.108, 279.07 )
-_sections_unfolded = [ "Collision", "Transform" ]
-
-[node name="EncroachingDoom" parent="." index="4" instance=ExtResource( 6 )]
+[node name="EncroachingDoom" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 250, 600 )
 _sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Enemy" parent="." index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 331.952, 231.529 )
+
+[node name="Enemy2" parent="." index="5" instance=ExtResource( 6 )]
+
+position = Vector2( 167.37, 122.739 )
+
+[node name="MovingEnemy" parent="." index="6" instance=ExtResource( 7 )]
+
+position = Vector2( 278.951, 2.78955 )
+
+[node name="GameItem" parent="." index="7" instance=ExtResource( 8 )]
+
+position = Vector2( 248.266, -186.897 )
 
 
