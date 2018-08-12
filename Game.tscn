@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://art/space1.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://art/floor.png" type="Texture" id=6]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EncroachingDoom.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ItemGenerator.tscn" type="PackedScene" id=9]
 
 [node name="Game" type="Node2D"]
 
@@ -115,5 +116,7 @@ position = Vector2( 250, 600 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Enemies" type="Node" parent="." index="4"]
+
+[node name="ItemGenerator" parent="." index="5" instance=ExtResource( 9 )]
 
 

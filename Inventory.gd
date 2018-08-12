@@ -28,6 +28,7 @@ func _ready():
 	
 	for item in [item1, item2]:
 		item.connect("clicked_on", self, "_item_clicked_on", [item])
+		item.stats().bonus_attack = 1
 		add_child(item)
 		
 	grid = inventory_grid.instance()
@@ -98,7 +99,7 @@ func can_pickup_item():
 	
 func pickup_item(item):
 	assert can_pickup_item()
-	
+
 	item.connect("clicked_on", self, "_item_clicked_on", [item])
 	add_child(item)
 	holding_area.place_item(item)
