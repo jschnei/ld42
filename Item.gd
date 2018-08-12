@@ -8,6 +8,10 @@ var cell_point_list = []
 var cell_list = []
 var item_cell = preload("res://ItemCell.tscn")
 
+# A pair of item base point and grid base point that identifies where
+# the item is in the grid.
+var grid_location = null
+
 func _ready():
 	pass
 
