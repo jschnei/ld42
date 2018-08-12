@@ -9,8 +9,8 @@ func _ready():
 func _process(delta):
 	move_and_slide(speed*direction)
 	
-	var game = get_parent()
-	position.x = clamp(position.x, game.left_wall, game.right_wall)
+	# var game = get_parent()
+	# position.x = clamp(position.x, game.left_wall, game.right_wall)
 
 
 func _on_change_direction_timer_timeout():

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var target = get_parent().get_node("Player")
+onready var target = get_parent().get_parent().get_node("Player")
 export (PackedScene) var EnemyBullet = preload("EnemyBullet.tscn")
 
 func _ready():
@@ -14,7 +14,7 @@ func doomify():
 	queue_free()
 
 func _process(delta):
-	var game = get_parent()
+	var game = get_parent().get_parent()
 	position.x = clamp(position.x, game.left_wall, game.right_wall)
 
 func _on_Stats_death():
