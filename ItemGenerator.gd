@@ -34,6 +34,7 @@ func random_item(item_level):
 	var item = item_scene.instance()
 	item.init(item_points)
 	item.stats().bonus_attack = bonus_attack
+	item.set_cell_text(0, str(bonus_attack))
 	return item
 
 # Pick one of the random 8 transormations.
