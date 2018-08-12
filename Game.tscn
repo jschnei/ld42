@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
-[ext_resource path="res://art/space.png" type="Texture" id=2]
-[ext_resource path="res://art/floor.png" type="Texture" id=3]
-[ext_resource path="res://GameItem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://EncroachingDoom.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://MovingEnemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://art/space1.png" type="Texture" id=2]
+[ext_resource path="res://art/space2.png" type="Texture" id=3]
+[ext_resource path="res://art/space3.png" type="Texture" id=4]
+[ext_resource path="res://art/space4.png" type="Texture" id=5]
+[ext_resource path="res://art/floor.png" type="Texture" id=6]
+[ext_resource path="res://GameItem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://EncroachingDoom.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://MovingEnemy.tscn" type="PackedScene" id=11]
 
 [node name="Game" type="Node2D"]
 
@@ -31,49 +34,99 @@ _sections_unfolded = [ "Scroll" ]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Space" index="0"]
 
-motion_scale = Vector2( 1, 0.5 )
+motion_scale = Vector2( 1, 1 )
 motion_offset = Vector2( 0, 0 )
-motion_mirroring = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 720 )
 _sections_unfolded = [ "Material", "Motion", "Transform", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="Space/ParallaxLayer" index="0"]
 
-position = Vector2( 282.292, 38.9717 )
+position = Vector2( 289.252, 295.008 )
+scale = Vector2( 1.03895, 1 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 1000, 10000 )
-_sections_unfolded = [ "Region", "Transform" ]
+region_rect = Rect2( 0, 0, 1280, 720 )
+_sections_unfolded = [ "Material", "Region", "Visibility" ]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Space" index="1"]
+
+motion_scale = Vector2( 1, 0.7 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 720 )
+_sections_unfolded = [ "Motion", "Transform", "Z Index" ]
+
+[node name="Sprite" type="Sprite" parent="Space/ParallaxLayer2" index="0"]
+
+position = Vector2( 292.716, 294.264 )
+scale = Vector2( 1.03953, 1.02041 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 720 )
+_sections_unfolded = [ "Region" ]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Space" index="2"]
+
+motion_scale = Vector2( 1, 0.5 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 720 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Space/ParallaxLayer3" index="0"]
+
+position = Vector2( 289.053, 294.264 )
+scale = Vector2( 1.04339, 0.994707 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 720 )
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Space" index="3"]
+
+position = Vector2( 0, 1 )
+motion_scale = Vector2( 1, 0.3 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 720 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Space/ParallaxLayer4" index="0"]
+
+position = Vector2( 291.525, 293.264 )
+scale = Vector2( 1.03953, 0.994707 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 720 )
+_sections_unfolded = [ "Region" ]
 
 [node name="Floor" type="Sprite" parent="." index="1"]
 
 position = Vector2( 250, 250 )
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 400, 100000 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="GameItem" parent="." index="2" instance=ExtResource( 4 )]
+[node name="GameItem" parent="." index="2" instance=ExtResource( 7 )]
 
-position = Vector2( 248.266, -194.897 )
+position = Vector2( 248.266, -186.897 )
 
-[node name="Player" parent="." index="3" instance=ExtResource( 5 )]
+[node name="Player" parent="." index="3" instance=ExtResource( 8 )]
 
 position = Vector2( 289.067, 419.149 )
 
-[node name="EncroachingDoom" parent="." index="4" instance=ExtResource( 6 )]
+[node name="EncroachingDoom" parent="." index="4" instance=ExtResource( 9 )]
 
 position = Vector2( 250, 600 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="Enemy" parent="." index="5" instance=ExtResource( 7 )]
+[node name="Enemy" parent="." index="5" instance=ExtResource( 10 )]
 
 position = Vector2( 331.952, 231.529 )
 
-[node name="Enemy2" parent="." index="6" instance=ExtResource( 7 )]
+[node name="Enemy2" parent="." index="6" instance=ExtResource( 10 )]
 
 position = Vector2( 167.37, 122.739 )
 
-[node name="MovingEnemy" parent="." index="7" instance=ExtResource( 8 )]
+[node name="MovingEnemy" parent="." index="7" instance=ExtResource( 11 )]
 
 position = Vector2( 278.951, 2.78955 )
 

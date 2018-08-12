@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player.png-99d195b4b10a03b7e1088962b50c29f4.stex"
+path="res://.import/holding_area.png-17b45275b23f44c8fd60ec88bb97e9d0.stex"
 
 [deps]
 
-source_file="res://art/player.png"
-dest_files=[ "res://.import/player.png-99d195b4b10a03b7e1088962b50c29f4.stex" ]
+source_file="res://art/holding_area.png"
+dest_files=[ "res://.import/holding_area.png-17b45275b23f44c8fd60ec88bb97e9d0.stex" ]
 
 [params]
 
