@@ -5,6 +5,8 @@ export (PackedScene) var Bullet = preload("Bullet.tscn")
 
 const MAX_BULLETS = 5
 
+var held_game_item = null
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -30,6 +32,12 @@ func _process(delta):
 			$bullets.add_child(bullet)
 	
 	move_and_slide(SPEED*(input_dir.normalized()))
+	
+func try_pick_up(game_item):
+	if held_game_item == null:
+		print("picked up item")
+		held_game_item = game_item
+		game_item.picked_up = true
 
 func doomify():
 	queue_free()
