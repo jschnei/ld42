@@ -7,7 +7,10 @@ path="res://.import/game_item.png-3c356d3afb3eb237ecb49b8edb14276c.stex"
 [deps]
 
 source_file="res://art/game_item.png"
+source_md5="d8a816ef39a2894a99c7fa8f2cbb093e"
+
 dest_files=[ "res://.import/game_item.png-3c356d3afb3eb237ecb49b8edb14276c.stex" ]
+dest_md5="ba1a862ecb9d6a2f2edca575a22edfb8"
 
 [params]
 
