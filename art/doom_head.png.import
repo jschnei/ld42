@@ -7,7 +7,10 @@ path="res://.import/doom_head.png-a52b52fa0fa30b4262834dff4cbfc49a.stex"
 [deps]
 
 source_file="res://art/doom_head.png"
+source_md5="b71c9594587891ef4accfd355d172d39"
+
 dest_files=[ "res://.import/doom_head.png-a52b52fa0fa30b4262834dff4cbfc49a.stex" ]
+dest_md5="2dbbe276e452443af4318d3c9c0db96b"
 
 [params]
 

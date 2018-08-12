@@ -6,7 +6,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://EncroachingDoom.tscn" type="PackedScene" id=6]
-[ext_resource path="res://GameItem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
 
 [node name="Game" type="Node2D" index="0"]
 
@@ -65,8 +65,12 @@ _sections_unfolded = [ "Collision", "Transform" ]
 position = Vector2( 250, 600 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="GameItem" parent="." index="5" instance=ExtResource( 7 )]
+[node name="Enemy" parent="." index="5" instance=ExtResource( 7 )]
 
-position = Vector2( 353.008, 287.088 )
+position = Vector2( 331.952, 231.529 )
+
+[node name="Enemy2" parent="." index="6" instance=ExtResource( 7 )]
+
+position = Vector2( 167.37, 122.739 )
 
 
