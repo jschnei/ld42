@@ -3,6 +3,9 @@ extends Node
 var max_health = 5
 var cur_health = max_health
 
+var base_attack_power = 1
+var bonus_attack = 0
+
 signal death
 
 func _ready():

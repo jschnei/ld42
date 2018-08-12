@@ -5,9 +5,6 @@ export (PackedScene) var Bullet = preload("Bullet.tscn")
 
 const MAX_BULLETS = 5
 
-var base_attack_power = 1
-var bonus_attack = 0
-
 signal picked_up_item(item)
 
 func _ready():
@@ -44,7 +41,10 @@ func take_damage(damage):
 	print("oh no, player hit")
 	
 func total_attack():
-	return base_attack_power + bonus_attack
+	return stats().base_attack_power + stats().bonus_attack
 
 func doomify():
 	queue_free()
+	
+func stats():
+	return get_node("Stats")

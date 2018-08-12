@@ -26,7 +26,7 @@ func _player_picked_up_item(game_item):
 		game_item.queue_free()
 		
 func _update_player():
-	player.bonus_attack = inventory.grid.get_bonus_attack_total()
+	player.stats().bonus_attack = inventory.grid.get_bonus_attack_total()
 	_update_hud()
 
 func _update_hud():
