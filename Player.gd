@@ -32,7 +32,7 @@ func _process(delta):
 		if $bullets.get_child_count() < MAX_BULLETS:
 			var bullet = Bullet.instance()
 			bullet.position = position
-			bullet.damage = base_attack_power + bonus_attack
+			bullet.damage = total_attack()
 			$bullets.add_child(bullet)
 	
 	move_and_slide(SPEED*(input_dir.normalized()))
@@ -42,6 +42,9 @@ func try_pick_up(game_item):
 
 func take_damage(damage):
 	print("oh no, player hit")
+	
+func total_attack():
+	return base_attack_power + bonus_attack
 
 func doomify():
 	queue_free()

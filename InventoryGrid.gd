@@ -92,8 +92,7 @@ func get_bonus_attack_total():
 	for item in items_in_grid:
 		bonus_attack += item.attack_bonus
 	return bonus_attack
-	
-	
+		
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
