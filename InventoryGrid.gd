@@ -54,7 +54,7 @@ func _cell_released(v):
 # a "base point" in the item list, and a point in the grid, return if the
 # item can be placed in the grid so that the item base point coincides with
 # the grid base point and doesn't intersect with any existing items.
-func is_item_placeable(item, item_base_point, grid_base_point):
+func can_place_item(item, item_base_point, grid_base_point):
 	for cell in item.cell_point_list:
 		var v = cell - item_base_point + grid_base_point
 		if v[0] < 0 or v[1] < 0 or v[0] >= WIDTH or v[1] >= HEIGHT:
@@ -64,7 +64,7 @@ func is_item_placeable(item, item_base_point, grid_base_point):
 	return true
 	
 func place_item(item, item_base_point, grid_base_point):
-	assert is_item_placeable(item, item_base_point, grid_base_point)
+	assert can_place_item(item, item_base_point, grid_base_point)
 	assert not item in items_in_grid
 	
 	items_in_grid.append(item)
