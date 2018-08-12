@@ -18,7 +18,7 @@ func init(point_list):
 		var new_cell = create_and_add_cell(point_list[i])
 		new_cell.connect("clicked_on", self, "_cell_clicked_on", [i])
 					
-func create_and_add_cell(point):
+"""func create_and_add_cell(point):
 	cell_point_list.append(point)
 	
 	var polygon = [CELL_SIZE * point,
@@ -28,6 +28,20 @@ func create_and_add_cell(point):
 	var new_cell = item_cell.instance()
 	new_cell.get_node("Polygon2D").polygon = polygon
 	new_cell.get_node("CollisionPolygon2D").polygon = polygon
+	
+	add_child(new_cell)
+	return new_cell
+"""
+
+func create_and_add_cell(point):
+	cell_point_list.append(point)
+	
+	var new_cell = item_cell.instance()
+	var sprite_size = new_cell.get_node("Sprite").get_texture().get_size()
+	var sprite_scale_x = CELL_SIZE / sprite_size.x
+	var sprite_scale_y = CELL_SIZE / sprite_size.y
+	new_cell.position = CELL_SIZE * point
+	new_cell.scale = Vector2(sprite_scale_x, sprite_scale_y)
 	
 	add_child(new_cell)
 	return new_cell
@@ -48,7 +62,7 @@ func center_point():
 			min_y = point.y
 		if point.y > max_y:
 			max_y = point.y
-	var center_point = Vector2((max_x+min_x+1)/2, (max_y+min_y+1)/2)
+	var center_point = Vector2((max_x+min_x)/2, (max_y+min_y)/2)
 	return center_point * CELL_SIZE
 	
 func stats():

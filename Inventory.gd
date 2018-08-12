@@ -19,20 +19,6 @@ var grid = null
 var holding_area = null
 
 func _ready():
-	# initialize some fake items
-	"""
-	var item1 = item.instance()
-	item1.init([Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)])
-	
-	var item2 = item.instance()
-	item2.init([Vector2(2, 0), Vector2(2, 1), Vector2(3, 1)])
-	
-	for item in [item1, item2]:
-		item.connect("clicked_on", self, "_item_clicked_on", [item])
-		item.stats().bonus_attack = 1
-		add_child(item)
-	"""
-		
 	grid = inventory_grid.instance()
 	grid.position = Vector2(100, 50)
 	grid.connect("clicked_on", self, "_grid_clicked_on")
@@ -41,12 +27,24 @@ func _ready():
 	
 	initialize_holding_area()
 	
+	# Uncomment if you want to test inventory by itself.
+#	var item1 = item.instance()
+#	item1.init([Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)])
+#
+#	var item2 = item.instance()
+#	item2.init([Vector2(2, 0), Vector2(2, 1), Vector2(3, 1)])
+#
+#	for item in [item1, item2]:
+#		item.connect("clicked_on", self, "_item_clicked_on", [item])
+#		item.stats().bonus_attack = 1
+#		add_child(item)
+	
 func initialize_holding_area():
 	holding_area = holding_area_scene.instance()
 	var sprite_size = holding_area.get_node("Sprite").get_texture().get_size()
 	var sprite_scale_x = grid.WIDTH*grid.CELL_SIZE / sprite_size.x
 	var sprite_scale_y = grid.HEIGHT*grid.CELL_SIZE / sprite_size.y
-	holding_area.position = Vector2(grid.position.x + grid.WIDTH*grid.CELL_SIZE/2,
+	holding_area.position = Vector2(grid.position.x + grid.WIDTH*grid.CELL_SIZE/2 - grid.CELL_SIZE/2,
 									grid.position.y + grid.HEIGHT*grid.CELL_SIZE*3/2 + 50)
 	holding_area.scale = Vector2(sprite_scale_x, sprite_scale_y)
 	holding_area.connect("clicked_or_released", self, "_holding_area_clicked_or_released")
@@ -73,7 +71,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if held_item != null:
 			# Move the item so that the center of the clicked item cell follows the mouse.
-			held_item.position = get_local_mouse_position() - (held_item.point_at(held_item_cell) + Vector2(0.5, 0.5)) * grid.CELL_SIZE
+			held_item.position = get_local_mouse_position() - held_item.point_at(held_item_cell) * grid.CELL_SIZE
 	elif event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
 			clicked_this_frame = true
