@@ -9,7 +9,7 @@
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://MovingEnemy.tscn" type="PackedScene" id=8]
 
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
 catchup_margin = 400
@@ -54,7 +54,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 [node name="GameItem" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 248.266, -186.897 )
+position = Vector2( 248.266, -194.897 )
 
 [node name="Player" parent="." index="3" instance=ExtResource( 5 )]
 
