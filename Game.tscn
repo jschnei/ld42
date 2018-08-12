@@ -109,24 +109,28 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 position = Vector2( 328.315, 77.2633 )
 
-[node name="Player" parent="." index="3" instance=ExtResource( 8 )]
+[node name="GameItem2" parent="." index="3" instance=ExtResource( 7 )]
+
+position = Vector2( 160.097, 44.0267 )
+
+[node name="Player" parent="." index="4" instance=ExtResource( 8 )]
 
 position = Vector2( 289.067, 419.149 )
 
-[node name="EncroachingDoom" parent="." index="4" instance=ExtResource( 9 )]
+[node name="EncroachingDoom" parent="." index="5" instance=ExtResource( 9 )]
 
 position = Vector2( 250, 600 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="Enemy" parent="." index="5" instance=ExtResource( 10 )]
+[node name="Enemy" parent="." index="6" instance=ExtResource( 10 )]
 
 position = Vector2( 331.952, 231.529 )
 
-[node name="Enemy2" parent="." index="6" instance=ExtResource( 10 )]
+[node name="Enemy2" parent="." index="7" instance=ExtResource( 10 )]
 
 position = Vector2( 167.37, 122.739 )
 
-[node name="MovingEnemy" parent="." index="7" instance=ExtResource( 11 )]
+[node name="MovingEnemy" parent="." index="8" instance=ExtResource( 11 )]
 
 position = Vector2( 278.951, 2.78955 )
 
