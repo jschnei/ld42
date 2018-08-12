@@ -14,6 +14,7 @@ func _ready():
 	inventory = $ViewportContainer2/Viewport/Inventory
 	player.connect("picked_up_item", self, "_player_picked_up_item")
 	inventory.grid.connect("updated", self, "_update_player")
+	_update_hud()
 
 func _process(delta):
 	pass
@@ -25,4 +26,8 @@ func _player_picked_up_item(game_item):
 		game_item.queue_free()
 		
 func _update_player():
-	player.bonus_attack = inventory.grid.get_bonus_attack_total()
+	player.stats().bonus_attack = inventory.grid.get_bonus_attack_total()
+	_update_hud()
+
+func _update_hud():
+	inventory.get_node("InventoryHUD").set_attack_label(player.total_attack())

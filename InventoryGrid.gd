@@ -90,10 +90,9 @@ func remove_item(item):
 func get_bonus_attack_total():
 	var bonus_attack = 0
 	for item in items_in_grid:
-		bonus_attack += item.attack_bonus
+		bonus_attack += item.stats().bonus_attack
 	return bonus_attack
-	
-	
+		
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.

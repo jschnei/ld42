@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://art/player.png" type="Texture" id=3]
+[ext_resource path="res://Stats.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 22.2804, 20.6733 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 position = Vector2( 531.873, 300.714 )
 input_pickable = true
@@ -67,5 +68,7 @@ __meta__ = {
 }
 
 [node name="bullets" type="Node" parent="." index="3"]
+
+[node name="Stats" parent="." index="4" instance=ExtResource( 4 )]
 
 

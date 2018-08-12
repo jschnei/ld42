@@ -7,10 +7,8 @@ export (int) var CELL_SIZE
 var cell_point_list = []
 var item_cell = preload("res://ItemCell.tscn")
 
-var attack_bonus = 1
-
 func _ready():
-	# init([[1, 1]])
+	$ItemStats.bonus_attack = 1
 	pass
 
 func point_at(cell_index):
@@ -53,6 +51,9 @@ func center_point():
 			max_y = point.y
 	var center_point = Vector2((max_x+min_x+1)/2, (max_y+min_y+1)/2)
 	return center_point * CELL_SIZE
+	
+func stats():
+	return get_node("ItemStats")
 	
 func _cell_clicked_on(index):
 	emit_signal("clicked_on", index)
