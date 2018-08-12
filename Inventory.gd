@@ -20,6 +20,7 @@ var holding_area = null
 
 func _ready():
 	# initialize some fake items
+	"""
 	var item1 = item.instance()
 	item1.init([Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)])
 	
@@ -30,6 +31,7 @@ func _ready():
 		item.connect("clicked_on", self, "_item_clicked_on", [item])
 		item.stats().bonus_attack = 1
 		add_child(item)
+	"""
 		
 	grid = inventory_grid.instance()
 	grid.position = Vector2(100, 50)
