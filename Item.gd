@@ -5,6 +5,7 @@ signal clicked_on(cell_index)
 export (int) var CELL_SIZE
 
 var cell_point_list = []
+var cell_list = []
 var item_cell = preload("res://ItemCell.tscn")
 
 func _ready():
@@ -17,6 +18,7 @@ func init(point_list):
 	for i in range(len(point_list)):
 		var new_cell = create_and_add_cell(point_list[i])
 		new_cell.connect("clicked_on", self, "_cell_clicked_on", [i])
+		cell_list.append(new_cell)
 					
 """func create_and_add_cell(point):
 	cell_point_list.append(point)
@@ -67,6 +69,9 @@ func center_point():
 	
 func stats():
 	return get_node("ItemStats")
+	
+func set_cell_text(cell_index, text):
+	cell_list[cell_index].get_node("Label").text = text
 	
 func _cell_clicked_on(index):
 	emit_signal("clicked_on", index)
