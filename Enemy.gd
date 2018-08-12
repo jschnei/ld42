@@ -13,6 +13,10 @@ func take_damage(damage):
 func doomify():
 	queue_free()
 
+func _process(delta):
+	var game = get_parent()
+	position.x = clamp(position.x, game.left_wall, game.right_wall)
+
 func _on_Stats_death():
 	queue_free()
 
