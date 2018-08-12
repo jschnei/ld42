@@ -2,6 +2,7 @@ extends Node2D
 
 signal clicked_on(v)
 signal released(v)
+signal updated
 
 export (int) var CELL_SIZE
 export (int) var HEIGHT
@@ -30,7 +31,8 @@ func _ready():
 		for j in range(HEIGHT):
 			empty_row.append(null)
 		grid_contents.append(empty_row)
-
+		
+	
 func create_and_add_cell(v):	
 	var polygon = [CELL_SIZE * (v + Vector2(0.05, 0.05)),
 				   CELL_SIZE * (v + Vector2(0.05, 0.95)),
@@ -73,6 +75,7 @@ func place_item(item, item_base_point, grid_base_point):
 		grid_contents[v[0]][v[1]] = item
 	
 	item.position = position + (grid_base_point - item_base_point) * CELL_SIZE
+	emit_signal("updated")
 		
 func remove_item(item):
 	assert item in items_in_grid
@@ -82,6 +85,15 @@ func remove_item(item):
 			if grid_contents[i][j] == item:
 				grid_contents[i][j] = null
 	items_in_grid.erase(item)
+	emit_signal("updated")
+	
+func get_bonus_attack_total():
+	var bonus_attack = 0
+	for item in items_in_grid:
+		bonus_attack += item.attack_bonus
+	return bonus_attack
+	
+	
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.

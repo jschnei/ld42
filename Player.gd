@@ -5,6 +5,9 @@ export (PackedScene) var Bullet = preload("Bullet.tscn")
 
 const MAX_BULLETS = 5
 
+var base_attack_power = 1
+var bonus_attack = 0
+
 signal picked_up_item(item)
 
 func _ready():
@@ -29,6 +32,7 @@ func _process(delta):
 		if $bullets.get_child_count() < MAX_BULLETS:
 			var bullet = Bullet.instance()
 			bullet.position = position
+			bullet.damage = base_attack_power + bonus_attack
 			$bullets.add_child(bullet)
 	
 	move_and_slide(SPEED*(input_dir.normalized()))

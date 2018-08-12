@@ -7,6 +7,8 @@ export (int) var CELL_SIZE
 var cell_point_list = []
 var item_cell = preload("res://ItemCell.tscn")
 
+var attack_bonus = 1
+
 func _ready():
 	# init([[1, 1]])
 	pass
