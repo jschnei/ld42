@@ -64,7 +64,11 @@ func _create_enemy(enemy_type, enemy_position, level):
 	if enemy.has_method("set_level"):
 		enemy.set_level(level)
 	
-	enemy.item_to_drop = $ItemGenerator.random_item(level)
+	if enemy.has_method("item_probability"):
+		var prob = enemy.item_probability(level)
+		if randf() <= prob:
+			enemy.item_to_drop = $ItemGenerator.random_item(level)
+	
 	$Enemies.add_child(enemy)
 	return enemy
 

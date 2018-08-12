@@ -13,8 +13,11 @@ func _process(delta):
 	# position.x = clamp(position.x, game.left_wall, game.right_wall)
 
 func set_level(level):
-	$Stats.max_health = 3*level
+	$Stats.max_health = 6*level - 2
 	$Stats.cur_health = $Stats.max_health
+
+func item_probability(level):
+	return 0.6
 
 func _on_change_direction_timer_timeout():
 	direction = direction.rotated(randf()*2*PI)
