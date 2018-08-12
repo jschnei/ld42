@@ -50,17 +50,21 @@ func _ready():
 		
 		for spawn in wave['enemies']:
 			var enemy_position = $Player.position + displacement + spawn[1]
-			var enemy = _create_enemy(spawn[0], enemy_position)
+			var enemy = _create_enemy(spawn[0], enemy_position, wave_ind + 1)
 			if wall:
 				enemy.connect("death", wall, "weaken_wall")
 				wall.strength += 1
 
 			
-func _create_enemy(enemy_type, enemy_position):
+func _create_enemy(enemy_type, enemy_position, level):
 	var enemy = enemy_type.instance()
 	enemy.position = enemy_position
 	enemy.connect("dropped_item", self, "_enemy_dropped_item", [enemy])
-	enemy.item_to_drop = $ItemGenerator.random_item()
+	
+	if enemy.has_method("set_level"):
+		enemy.set_level(level)
+	
+	enemy.item_to_drop = $ItemGenerator.random_item(level)
 	$Enemies.add_child(enemy)
 	return enemy
 

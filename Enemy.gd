@@ -22,6 +22,10 @@ func _process(delta):
 	var game = get_parent().get_parent()
 	position.x = clamp(position.x, game.left_wall, game.right_wall)
 
+func set_level(level):
+	$Stats.max_health = level
+	$Stats.cur_health = level
+
 func _on_Stats_death():
 	emit_signal("dropped_item")
 	die()

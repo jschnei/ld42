@@ -18,17 +18,19 @@ func _ready():
 	# Initialization here
 	pass
 
-func random_item():
+func random_item(item_level):
 	var item_points
 	var bonus_attack
 	
 	if randi()%3 == 0:
 		item_points = item3s[randi()%(len(item3s))]
-		bonus_attack = 1
+		bonus_attack = item_level
 	else:
 		item_points = item4s[randi()%(len(item4s))]
-		bonus_attack = 2
+		bonus_attack = (3*item_level)/2
 		
+	bonus_attack += randi() % (1 + (item_level/2))
+	
 	var item = item_scene.instance()
 	item.init(item_points)
 	item.stats().bonus_attack = bonus_attack
