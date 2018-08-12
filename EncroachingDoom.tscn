@@ -1,15 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://EncroachingDoom.gd" type="Script" id=1]
 [ext_resource path="res://art/doom_head.png" type="Texture" id=2]
-[ext_resource path="res://art/doom_body.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 200, 50 )
 
-[node name="EncroachingDoom" type="KinematicBody2D" index="0"]
+[node name="EncroachingDoom" type="KinematicBody2D"]
 
 position = Vector2( 513.27, 384.952 )
 input_pickable = false
@@ -17,7 +16,7 @@ collision_layer = 2
 collision_mask = 7
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "collision" ]
 normal_speed = 0.0
 catchup_speed = 95
 
@@ -31,18 +30,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="body" type="Sprite" parent="." index="1"]
-
-position = Vector2( 0, 1050 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 400, 2000 )
-_sections_unfolded = [ "Offset", "Region", "Transform", "Z Index" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
 __meta__ = {
