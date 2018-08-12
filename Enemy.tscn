@@ -41,7 +41,7 @@ margin_bottom = -54.0
 [node name="ShotTimer" type="Timer" parent="." index="4"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 2.0
 one_shot = false
 autostart = true
 
