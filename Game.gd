@@ -1,5 +1,8 @@
 extends Node2D
 
+# wall type
+var Wall = preload("res://Wall.tscn")
+
 # enemy types go here
 var StaticEnemy = preload("res://Enemy.tscn")
 var MovingEnemy = preload("res://MovingEnemy.tscn")
@@ -15,8 +18,12 @@ export (int) var num_waves = 10
 export (float) var wave_height = 400
 export (float) var rest_height = 200
 
-var wave1 = [[StaticEnemy, Vector2(0, 100)], [StaticEnemy, Vector2(-80, 100)], [StaticEnemy, Vector2(80, 100)]]
-var wave2 = [[MovingEnemy, Vector2(0, 100)]]
+var empty_wave = {'enemies': [],
+				  'has_wall': true}
+var wave1 = {'enemies': [[StaticEnemy, Vector2(0, 100)], [StaticEnemy, Vector2(-80, 100)], [StaticEnemy, Vector2(80, 100)]],
+			 'has_wall': true}
+var wave2 = {'enemies': [[MovingEnemy, Vector2(0, 100)]],
+			 'has_wall': true}
 
 func _ready():
 	left_wall = $Floor.position.x - $Floor.region_rect.end.x/2
@@ -25,7 +32,7 @@ func _ready():
 	# initialize waves
 	for wave_ind in range(num_waves):
 		# generate random wave
-		var wave = []
+		var wave = empty_wave
 		var choice = randi() % 2
 		if choice == 0:
 			wave = wave1
@@ -34,9 +41,19 @@ func _ready():
 			
 		var displacement = Vector2(0, -(wave_ind + 1)*wave_height - wave_ind*rest_height)
 		
-		for spawn in wave:
+		var wall = null
+		if wave['has_wall']:
+			wall = Wall.instance()
+			wall.position = $Player.position + displacement
+			$Walls.add_child(wall)
+			wall.strength = 0
+		
+		for spawn in wave['enemies']:
 			var enemy_position = $Player.position + displacement + spawn[1]
-			_create_enemy(spawn[0], enemy_position)
+			var enemy = _create_enemy(spawn[0], enemy_position)
+			if wall:
+				enemy.connect("death", wall, "weaken_wall")
+				wall.strength += 1
 
 			
 func _create_enemy(enemy_type, enemy_position):
@@ -44,7 +61,8 @@ func _create_enemy(enemy_type, enemy_position):
 	enemy.position = enemy_position
 	enemy.connect("dropped_item", self, "_enemy_dropped_item", [enemy])
 	enemy.item_to_drop = $ItemGenerator.random_item()
-	$Enemies.add_child(enemy)		
+	$Enemies.add_child(enemy)
+	return enemy
 
 func _process(delta):
 	$Player.position.x = clamp($Player.position.x, left_wall, right_wall)

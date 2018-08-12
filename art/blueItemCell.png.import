@@ -7,7 +7,10 @@ path="res://.import/blueItemCell.png-5ab59e3f0e0e99cd1046cc56d66729b8.stex"
 [deps]
 
 source_file="res://art/blueItemCell.png"
+source_md5="9fda5fee3b472da4a0d085cf7abe3dcf"
+
 dest_files=[ "res://.import/blueItemCell.png-5ab59e3f0e0e99cd1046cc56d66729b8.stex" ]
+dest_md5="c69ef072f265847014ac09195873934a"
 
 [params]
 

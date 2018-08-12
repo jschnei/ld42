@@ -1,16 +1,13 @@
 extends StaticBody2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var strength = 1
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
 	pass
 
-func take_damage(damage):
-	if damage > 0:
+func weaken_wall():
+	strength -= 1
+	if strength == 0:
 		queue_free()
 		
 

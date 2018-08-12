@@ -4,6 +4,7 @@ onready var target = get_parent().get_parent().get_node("Player")
 export (PackedScene) var EnemyBullet = preload("EnemyBullet.tscn")
 
 signal dropped_item
+signal death
 
 var item_to_drop = null
 
@@ -15,7 +16,7 @@ func take_damage(damage):
 	$HealthBar.update_bar($Stats.cur_health, $Stats.max_health)
 		
 func doomify():
-	queue_free()
+	die()
 
 func _process(delta):
 	var game = get_parent().get_parent()
@@ -23,6 +24,10 @@ func _process(delta):
 
 func _on_Stats_death():
 	emit_signal("dropped_item")
+	die()
+
+func die():
+	emit_signal("death")
 	queue_free()
 
 func _on_ShotTimer_timeout():
