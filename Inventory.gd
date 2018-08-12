@@ -31,7 +31,7 @@ func _ready():
 		add_child(item)
 		
 	grid = inventory_grid.instance()
-	grid.position = Vector2(500, 50)
+	grid.position = Vector2(100, 50)
 	grid.connect("clicked_on", self, "_grid_clicked_on")
 	grid.connect("released", self, "_grid_released")
 	add_child(grid)

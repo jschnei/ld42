@@ -16,9 +16,17 @@ func _process(delta):
 	#	print('hello')
 	pass
 	
-func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		if event.is_pressed():
-			emit_signal('clicked_on')
-		else:
-			emit_signal('released')
+func mouse_in_cell():
+	var pos = get_local_mouse_position() - $Polygon2D.polygon[0]
+	var cell_size = get_parent().CELL_SIZE
+	return (pos.x >= 0) && (pos.x <= cell_size) && (pos.y >= 0) && (pos.y <= cell_size)
+
+func _input(event):
+	if mouse_in_cell():
+		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+			if event.is_pressed():
+				emit_signal('clicked_on')
+			else:
+				emit_signal('released')
+
+	

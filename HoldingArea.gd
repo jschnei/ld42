@@ -9,9 +9,15 @@ func _ready():
 	# Initialization here
 	pass
 	
-func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		emit_signal('clicked_or_released')
+func mouse_in_area():
+	var pos = get_local_mouse_position()
+	var cell_size = 64
+	return (pos.x >= -cell_size) && (pos.x <= cell_size) && (pos.y >= -cell_size) && (pos.y <= cell_size)
+	
+func _input(event):
+	if mouse_in_area():
+		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+			emit_signal('clicked_or_released')
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
