@@ -33,7 +33,7 @@ func _ready():
 		grid_contents.append(empty_row)
 		
 	
-func create_and_add_cell(v):	
+"""func create_and_add_cell(v):	
 	var polygon = [CELL_SIZE * (v + Vector2(0.05, 0.05)),
 				   CELL_SIZE * (v + Vector2(0.05, 0.95)),
 				   CELL_SIZE * (v + Vector2(0.95, 0.95)),
@@ -43,6 +43,18 @@ func create_and_add_cell(v):
 	new_cell.get_node("Polygon2D").polygon = polygon
 	new_cell.get_node("CollisionPolygon2D").polygon = polygon
 
+	add_child(new_cell)
+	return new_cell
+"""
+
+func create_and_add_cell(point):	
+	var new_cell = inventory_cell.instance()
+	var sprite_size = new_cell.get_node("Sprite").get_texture().get_size()
+	var sprite_scale_x = CELL_SIZE / sprite_size.x
+	var sprite_scale_y = CELL_SIZE / sprite_size.y
+	new_cell.position = CELL_SIZE * point
+	new_cell.scale = Vector2(sprite_scale_x, sprite_scale_y)
+	
 	add_child(new_cell)
 	return new_cell
 	
