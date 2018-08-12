@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
-[ext_resource path="res://art/enemy.png" type="Texture" id=2]
-[ext_resource path="res://Stats.tscn" type="PackedScene" id=3]
-[ext_resource path="res://HealthBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://EnemyBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/enemy.png" type="Texture" id=3]
+[ext_resource path="res://Stats.tscn" type="PackedScene" id=4]
+[ext_resource path="res://HealthBar.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -12,29 +13,42 @@ extents = Vector2( 25, 25 )
 
 [node name="Enemy" type="KinematicBody2D"]
 
+position = Vector2( 357.419, 88.5197 )
 input_pickable = false
 collision_layer = 2
 collision_mask = 5
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
+EnemyBullet = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
 
-[node name="Stats" parent="." index="2" instance=ExtResource( 3 )]
+[node name="Stats" parent="." index="2" instance=ExtResource( 4 )]
 
-[node name="HealthBar" parent="." index="3" instance=ExtResource( 4 )]
+[node name="HealthBar" parent="." index="3" instance=ExtResource( 5 )]
 
 anchor_bottom = 1.0
 margin_top = -40.0
 margin_bottom = -54.0
 
+[node name="ShotTimer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="Bullets" type="Node" parent="." index="5"]
+
 [connection signal="death" from="Stats" to="." method="_on_Stats_death"]
+
+[connection signal="timeout" from="ShotTimer" to="." method="_on_ShotTimer_timeout"]
 
 

@@ -39,5 +39,8 @@ func try_pick_up(game_item):
 		held_game_item = game_item
 		game_item.picked_up = true
 
+func take_damage(damage):
+	print("oh no, player hit")
+
 func doomify():
 	queue_free()

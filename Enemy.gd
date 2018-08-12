@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+onready var target = get_parent().get_node("Player")
+export (PackedScene) var EnemyBullet = preload("EnemyBullet.tscn")
+
 func _ready():
 	pass
 
@@ -12,3 +15,9 @@ func doomify():
 
 func _on_Stats_death():
 	queue_free()
+
+func _on_ShotTimer_timeout():
+	var new_bullet = EnemyBullet.instance()
+	new_bullet.position = position
+	$Bullets.add_child(new_bullet)
+	new_bullet.direction = (target.position - position).normalized()
