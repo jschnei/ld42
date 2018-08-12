@@ -33,8 +33,9 @@ func try_pick_up(game_item):
 
 func take_damage(damage):
 	# stun player
-	player_state = PLAYER_STUNNED
-	$StunTimer.start()
+	if player_state == PLAYER_ACTIVE:
+		player_state = PLAYER_STUNNED
+		$StunTimer.start()
 	
 	
 func total_attack():
