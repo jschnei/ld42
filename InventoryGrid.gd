@@ -87,6 +87,7 @@ func place_item(item, item_base_point, grid_base_point):
 		grid_contents[v[0]][v[1]] = item
 	
 	item.position = position + (grid_base_point - item_base_point) * CELL_SIZE
+	item.grid_location = [item_base_point, grid_base_point]
 	emit_signal("updated")
 		
 func remove_item(item):
@@ -97,6 +98,7 @@ func remove_item(item):
 			if grid_contents[i][j] == item:
 				grid_contents[i][j] = null
 	items_in_grid.erase(item)
+	item.grid_location = null
 	emit_signal("updated")
 	
 func get_bonus_attack_total():

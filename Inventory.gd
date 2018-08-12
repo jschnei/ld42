@@ -8,6 +8,11 @@ var held_item = null
 var held_item_cell = 0
 var time_held = 0
 
+# See save_location_of_item for the format of this.
+# This is used to return items to their original locations if they
+# are dropped in an invalid place
+var saved_item_location = null
+
 var item_clicked_this_frame = null
 var cell_index_clicked_this_frame = null
 var grid_cell_clicked_this_frame = null
@@ -28,16 +33,16 @@ func _ready():
 	initialize_holding_area()
 	
 	# Uncomment if you want to test inventory by itself.
-#	var item1 = item.instance()
-#	item1.init([Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)])
-#
-#	var item2 = item.instance()
-#	item2.init([Vector2(2, 0), Vector2(2, 1), Vector2(3, 1)])
-#
-#	for item in [item1, item2]:
-#		item.connect("clicked_on", self, "_item_clicked_on", [item])
-#		item.stats().bonus_attack = 1
-#		add_child(item)
+	var item1 = item.instance()
+	item1.init([Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)])
+
+	var item2 = item.instance()
+	item2.init([Vector2(2, 0), Vector2(2, 1), Vector2(3, 1)])
+
+	for item in [item1, item2]:
+		item.connect("clicked_on", self, "_item_clicked_on", [item])
+		item.stats().bonus_attack = 1
+		add_child(item)
 	
 func initialize_holding_area():
 	holding_area = holding_area_scene.instance()
@@ -91,7 +96,7 @@ func drop():
 				holding_area.place_item(held_item)
 				held_item = null
 	elif held_item != null:
-		print("dropping item")
+		restore_saved_item(held_item)
 		held_item = null
 
 func can_pickup_item():
@@ -103,6 +108,24 @@ func pickup_item(item):
 	item.connect("clicked_on", self, "_item_clicked_on", [item])
 	add_child(item)
 	holding_area.place_item(item)
+	
+func save_location_of_item(item):
+	if item in grid.items_in_grid:
+		saved_item_location = ["Grid", item.grid_location]
+	elif item == holding_area.held_item:
+		saved_item_location = ["HoldingArea"]
+	else:
+		saved_item_location = ["Unknown"]
+
+func restore_saved_item(item):
+	if saved_item_location[0] == "Grid":
+		var grid_location = saved_item_location[1]
+		grid.place_item(item, grid_location[0], grid_location[1])
+	elif saved_item_location[0] == "HoldingArea":
+		holding_area.place_item(item)
+	else:
+		print("unknown previous location of item, dropping in place")
+		pass
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
@@ -113,6 +136,7 @@ func _process(delta):
 			print("now holding item")
 			held_item = item_clicked_this_frame
 			held_item_cell = cell_index_clicked_this_frame
+			save_location_of_item(held_item)
 			if held_item in grid.items_in_grid:
 				grid.remove_item(held_item)
 			if held_item == holding_area.held_item:
