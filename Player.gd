@@ -5,7 +5,7 @@ export (PackedScene) var Bullet = preload("Bullet.tscn")
 
 const MAX_BULLETS = 5
 
-var held_game_item = null
+signal picked_up_item(item)
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -34,10 +34,7 @@ func _process(delta):
 	move_and_slide(SPEED*(input_dir.normalized()))
 	
 func try_pick_up(game_item):
-	if held_game_item == null:
-		print("picked up item")
-		held_game_item = game_item
-		game_item.picked_up = true
+	emit_signal("picked_up_item", game_item)
 
 func take_damage(damage):
 	print("oh no, player hit")

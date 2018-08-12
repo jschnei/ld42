@@ -107,7 +107,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 [node name="GameItem" parent="." index="2" instance=ExtResource( 7 )]
 
-position = Vector2( 248.266, -186.897 )
+position = Vector2( 328.315, 77.2633 )
 
 [node name="Player" parent="." index="3" instance=ExtResource( 8 )]
 

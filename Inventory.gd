@@ -93,6 +93,16 @@ func drop():
 		print("dropping item")
 		held_item = null
 
+func can_pickup_item():
+	return holding_area.held_item == null and held_item == null
+	
+func pickup_item(item):
+	assert can_pickup_item()
+	
+	item.connect("clicked_on", self, "_item_clicked_on", [item])
+	add_child(item)
+	holding_area.place_item(item)
+
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.
