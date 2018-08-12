@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bullet.png-7adc94fbe6e31c193382926bba42bd83.stex"
+path="res://.import/doom_head_old.png-8f9cb25abad9fc34af95cb26f58dd88c.stex"
 
 [deps]
 
-source_file="res://art/bullet.png"
-dest_files=[ "res://.import/bullet.png-7adc94fbe6e31c193382926bba42bd83.stex" ]
+source_file="res://art/doom_head_old.png"
+dest_files=[ "res://.import/doom_head_old.png-8f9cb25abad9fc34af95cb26f58dd88c.stex" ]
 
 [params]
 
