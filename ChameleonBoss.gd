@@ -63,6 +63,10 @@ func _process(delta):
 			take_damage(collider.get_node("BulletStats"))
 			collider.queue_free()
 
+func set_level(level):
+	$Stats.max_health = 20*level
+	$Stats.cur_health = $Stats.max_health
+
 func _on_SpreadShotTimer_timeout():
 	if phase >= 2:
 		$EnemyBehavior.spread_shot(5)
