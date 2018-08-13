@@ -44,19 +44,21 @@ onready var tutorial_wave3 = {'enemies': [],
 					  'tutorial_text': ['It\'s an item!',
 										'Pick it up then use your mouse',
 										'to drag it into your inventory.',
-										'Items increase your attack damage.']
+										'Items in your inventory give you bonus attack damage.',
+										'The number tells you how much bonus damage.']
 					  }
 
 var tutorial_wave4 = {'enemies': [[StaticEnemy, Vector2(0, 100), 0.0]],
 				     'has_wall': true,
 				     'tutorial_text': ['Enemies can also shoot you!',
-									   'If you get hit, you will be stunned!'],
-					 'level': 2}
+									   'If you get hit, you will be temporarily stunned!'],
+					 'level': 3}
 
 var tutorial_wave5 = {'enemies': [[StaticEnemy, Vector2(40, 100), 1.0], [StaticEnemy, Vector2(-40, 100), 1.0]],
 				     'has_wall': true,
-				     'tutorial_text': ['Enemies can drop items too!'],
-					 'level': 2}
+				     'tutorial_text': ['Enemies can drop items too!',
+									   'You can only pick up an item if you have room in your holding area.'],
+					 'level': 3}
 
 var tutorial_wave6 = {'enemies': [],
 					 'has_wall': false,
