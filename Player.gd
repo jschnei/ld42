@@ -3,7 +3,7 @@ extends KinematicBody2D
 export (float) var SPEED = 100
 export (PackedScene) var Bullet = preload("Bullet.tscn")
 
-enum {PLAYER_ACTIVE, PLAYER_STUNNED}
+enum {PLAYER_ACTIVE, PLAYER_STUNNED, PLAYER_DEAD}
 var player_state = PLAYER_ACTIVE
 
 var normal_path = "res://art/player.png"
@@ -49,16 +49,16 @@ func take_damage(damage):
 	if player_state == PLAYER_ACTIVE:
 		player_state = PLAYER_STUNNED
 		$StunTimer.start()
-	$HitSound.play()
+		$HitSound.play()
 	
 func total_attack():
 	return stats().base_attack_power + stats().bonus_attack
 
 func doomify():
 	# maybe should be some general death function if the player can die in some other way?
-	$DeathSound.play()
-	queue_free()
-	get_tree().change_scene("res://TitleScreen.tscn")
+	if player_state != PLAYER_DEAD:
+		player_state = PLAYER_DEAD
+		$DeathSound.play()
 	
 	
 func stats():
@@ -79,3 +79,8 @@ func _on_BulletTimer_timeout():
 func _on_StunTimer_timeout():
 	# stun over
 	player_state = PLAYER_ACTIVE
+
+
+func _on_DeathSound_finished():
+	queue_free()
+	get_tree().change_scene("res://TitleScreen.tscn")

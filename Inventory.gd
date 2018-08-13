@@ -154,7 +154,6 @@ func _process(delta):
 	if clicked_this_frame:
 		time_held = 0
 		if item_clicked_this_frame != null and held_item == null:
-			print("now holding item")
 			held_item = item_clicked_this_frame
 			held_item_cell = cell_index_clicked_this_frame
 			save_location_of_item(held_item)
