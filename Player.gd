@@ -22,9 +22,9 @@ func _ready():
 	
 func _process(delta):
 	var texture = ImageTexture.new()
+	texture.load(normal_path)
 	if player_state == PLAYER_ACTIVE:
 		var input_dir  = Vector2(0, 0)
-		texture.load(normal_path)
 		if Input.is_action_pressed("ui_right"):
 			input_dir += Vector2(1, 0)
 			texture.load(right_path)
@@ -42,6 +42,7 @@ func _process(delta):
 	
 func try_pick_up(game_item):
 	emit_signal("picked_up_item", game_item)
+	$ItemPickup.play()
 
 func take_damage(damage):
 	# stun player
