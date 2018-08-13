@@ -1,9 +1,7 @@
 extends Area2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 signal clicked_on
+signal right_clicked_on
 
 var red_path = "res://art/redItemCell.png"
 var green_path = "res://art/greenItemCell.png"
@@ -46,4 +44,6 @@ func _input(event):
 		if event is InputEventMouseButton and event.is_pressed():
 			if event.button_index == BUTTON_LEFT:
 				emit_signal('clicked_on')
+			elif event.button_index == BUTTON_RIGHT:
+				emit_signal('right_clicked_on')
 

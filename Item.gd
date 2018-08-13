@@ -1,6 +1,7 @@
 extends Node2D
 
 signal clicked_on(cell_index)
+signal right_clicked_on(cell_index)
 
 export (int) var CELL_SIZE
 
@@ -25,6 +26,7 @@ func init(point_list):
 	for i in range(len(point_list)):
 		var new_cell = create_and_add_cell(point_list[i])
 		new_cell.connect("clicked_on", self, "_cell_clicked_on", [i])
+		new_cell.connect("right_clicked_on", self, "_cell_right_clicked_on", [i])
 		cell_list.append(new_cell)
 	
 	create_cell_connectors()
@@ -96,6 +98,9 @@ func set_cell_text(cell_index, text):
 	
 func _cell_clicked_on(index):
 	emit_signal("clicked_on", index)
+	
+func _cell_right_clicked_on(index):
+	emit_signal("right_clicked_on", index)
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
