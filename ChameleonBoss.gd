@@ -21,7 +21,7 @@ func _ready():
 	pass
 
 func update_resistances():
-	$Stats.base_weakness = 1
+	$Stats.base_weakness = 0
 	$Stats.red_weakness = 0
 	$Stats.blue_weakness = 0
 	$Stats.green_weakness = 0

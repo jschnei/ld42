@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://EnemyBullet.tscn" type="PackedScene" id=2]
@@ -7,13 +7,14 @@
 [ext_resource path="res://HealthBar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://EnemyBehavior.tscn" type="PackedScene" id=6]
 [ext_resource path="res://sounds/enemy_hit.wav" type="AudioStream" id=7]
+[ext_resource path="res://sounds/enemy_hit_no_damage.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 25, 25 )
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" index="0"]
 
 position = Vector2( 357.419, 88.5197 )
 input_pickable = false
@@ -54,6 +55,15 @@ autostart = true
 [node name="HitSound" type="AudioStreamPlayer" parent="." index="7"]
 
 stream = ExtResource( 7 )
+volume_db = -30.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="NoDamageHitSound" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 8 )
 volume_db = -30.0
 pitch_scale = 1.0
 autoplay = false

@@ -16,6 +16,8 @@ func take_damage(bullet_stats):
 		$HitSound.play()
 		$Stats.take_damage(bullet_stats)
 		$HealthBar.update_bar($Stats.cur_health, $Stats.max_health)
+	else:
+		$NoDamageHitSound.play()
 		
 func doomify():
 	die()
