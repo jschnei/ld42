@@ -42,11 +42,29 @@ onready var tutorial_wave3 = {'enemies': [],
 					  'has_wall': false,
 					  'items': [[$ItemGenerator.tutorial_item(), Vector2(0, 200)]],
 					  'tutorial_text': ['It\'s an item!',
-										'Pick it up and drag',
-										'it into your inventory.',
+										'Pick it up then use your mouse',
+										'to drag it into your inventory.',
 										'Items increase your attack damage.']
 					  }
-									
+
+var tutorial_wave4 = {'enemies': [[StaticEnemy, Vector2(0, 100), 0.0]],
+				     'has_wall': true,
+				     'tutorial_text': ['Enemies can also shoot you!',
+									   'If you get hit, you will be stunned!'],
+					 'level': 2}
+
+var tutorial_wave5 = {'enemies': [[StaticEnemy, Vector2(40, 100), 1.0], [StaticEnemy, Vector2(-40, 100), 1.0]],
+				     'has_wall': true,
+				     'tutorial_text': ['Enemies can drop items too!'],
+					 'level': 2}
+
+var tutorial_wave6 = {'enemies': [],
+					 'has_wall': false,
+					 'tutorial_text': ['Adjacent pairs of matching colors gives',
+									   'you a boost vs certain enemy types.',
+									   'Try to arrange your items cleverly!']
+					}
+
 var wave1 = {'enemies': [[StaticEnemy, Vector2(0, 100), 0.2], [StaticEnemy, Vector2(-80, 100), 0.2], [StaticEnemy, Vector2(80, 100), 0.2]],
 			 'has_wall': true}
 var wave2 = {'enemies': [[MovingEnemy, Vector2(0, 100), 0.6]],
@@ -65,6 +83,11 @@ func _ready():
 				 tutorial_wave2,
 				 tutorial_wave3,
 				 empty_wave,
+				 empty_wave,
+				 tutorial_wave4,
+				 empty_wave,
+				 tutorial_wave5,
+				 tutorial_wave6,
 				 gen_wave(),
 				 gen_wave(),
 				 gen_wave(),
@@ -94,6 +117,10 @@ func _ready():
 			$Walls.add_child(wall)
 			
 		
+		var level = wave_ind + 1
+		if 'level' in wave:
+			level = wave['level']
+		
 		if 'tutorial_text' in wave:
 			var tutorial_trigger = TutorialTrigger.instance()
 			tutorial_trigger.position = $Player.position + displacement + Vector2(0, wave_height)
@@ -108,8 +135,9 @@ func _ready():
 				$Items.add_child(new_item)
 		
 		for spawn in wave['enemies']:
+			print(spawn)
 			var enemy_position = $Player.position + displacement + spawn[1]
-			var enemy = _create_enemy(spawn[0], enemy_position, wave_ind + 1)
+			var enemy = _create_enemy(spawn[0], enemy_position, level, spawn[2])
 			if wall:
 				enemy.connect("death", wall, "weaken_wall")
 				wall.strength += 1
@@ -127,11 +155,11 @@ func random_colored_wave():
 	var coloredEnemies = [RedEnemy, BlueEnemy, GreenEnemy]
 	var ind = randi() % 3
 	var enemyType = coloredEnemies[ind]
-	return {'enemies': [[enemyType, Vector2(0, 100)], [enemyType, Vector2(-80, 100)], [enemyType, Vector2(80, 100)]],
+	return {'enemies': [[enemyType, Vector2(0, 100), 0.25], [enemyType, Vector2(-80, 100), 0.25], [enemyType, Vector2(80, 100), 0.25]],
 			'has_wall': true}
 	
 			
-func _create_enemy(enemy_type, enemy_position, level):
+func _create_enemy(enemy_type, enemy_position, level, prob):
 	var enemy = enemy_type.instance()
 	enemy.position = enemy_position
 	enemy.connect("dropped_item", self, "_enemy_dropped_item", [enemy])
@@ -139,10 +167,8 @@ func _create_enemy(enemy_type, enemy_position, level):
 	if enemy.has_method("set_level"):
 		enemy.set_level(level)
 	
-	if enemy.has_method("item_probability"):
-		var prob = enemy.item_probability(level)
-		if randf() <= prob:
-			enemy.item_to_drop = $ItemGenerator.random_item(level)
+	if randf() <= prob:
+		enemy.item_to_drop = $ItemGenerator.random_item(level)
 	
 	$Enemies.add_child(enemy)
 	return enemy
