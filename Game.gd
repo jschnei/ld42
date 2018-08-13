@@ -4,6 +4,7 @@ extends Node2D
 
 # enemy types go here
 var StaticEnemy = preload("res://Enemy.tscn")
+var DummyEnemy = preload("res://DummyEnemy.tscn")
 var MovingEnemy = preload("res://MovingEnemy.tscn")
 var RedEnemy = preload("res://RedEnemy.tscn")
 var BlueEnemy = preload("res://BlueEnemy.tscn")
@@ -31,12 +32,26 @@ var tutorial_wave = {'enemies': [],
 									   'ENCROACHING DOOM!',
 									   'Quick, proceed forward!']
 					}
+					
+var tutorial_wave2 = {'enemies': [[DummyEnemy, Vector2(0, 100), 0.0]],
+					  'has_wall': true,
+					  'tutorial_text': ['It\'s an enemy!',
+										'The wall won\'t open until you kill it.']}
+
+onready var tutorial_wave3 = {'enemies': [],
+					  'has_wall': false,
+					  'items': [[$ItemGenerator.tutorial_item(), Vector2(0, 200)]],
+					  'tutorial_text': ['It\'s an item!',
+										'Pick it up and drag',
+										'it into your inventory.',
+										'Items increase your attack damage.']
+					  }
 									
-var wave1 = {'enemies': [[StaticEnemy, Vector2(0, 100)], [StaticEnemy, Vector2(-80, 100)], [StaticEnemy, Vector2(80, 100)]],
+var wave1 = {'enemies': [[StaticEnemy, Vector2(0, 100), 0.2], [StaticEnemy, Vector2(-80, 100), 0.2], [StaticEnemy, Vector2(80, 100), 0.2]],
 			 'has_wall': true}
-var wave2 = {'enemies': [[MovingEnemy, Vector2(0, 100)]],
+var wave2 = {'enemies': [[MovingEnemy, Vector2(0, 100), 0.6]],
 			 'has_wall': true}
-var boss_wave = {'enemies': [[ChameleonBoss, Vector2(-180, 50)]],
+var boss_wave = {'enemies': [[ChameleonBoss, Vector2(-180, 50), 1.0]],
 				 'has_wall': true}
 
 func _ready():
@@ -46,7 +61,10 @@ func _ready():
 	randomize()
 	
 	var waves = [tutorial_wave,
-				 boss_wave,
+				 empty_wave,
+				 tutorial_wave2,
+				 tutorial_wave3,
+				 empty_wave,
 				 gen_wave(),
 				 gen_wave(),
 				 gen_wave(),
@@ -56,7 +74,8 @@ func _ready():
 				 gen_wave(),
 				 gen_wave(),
 				 gen_wave(),
-				 gen_wave()]
+				 gen_wave(),
+				 boss_wave]
 				
 	var num_waves = len(waves)
 	
@@ -80,6 +99,13 @@ func _ready():
 			tutorial_trigger.position = $Player.position + displacement + Vector2(0, wave_height)
 			tutorial_trigger.lines = wave['tutorial_text']
 			$TutorialTriggers.add_child(tutorial_trigger)
+		
+		if 'items' in wave:
+			for item in wave['items']:
+				var new_item = GameItem.instance()
+				new_item.item = item[0]
+				new_item.position = $Player.position + item[1] + displacement
+				$Items.add_child(new_item)
 		
 		for spawn in wave['enemies']:
 			var enemy_position = $Player.position + displacement + spawn[1]

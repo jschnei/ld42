@@ -116,8 +116,10 @@ _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform"
 
 [node name="Walls" type="Node" parent="." index="5"]
 
-[node name="TutorialTriggers" type="Node" parent="." index="6"]
+[node name="Items" type="Node" parent="." index="6"]
 
-[node name="ItemGenerator" parent="." index="7" instance=ExtResource( 8 )]
+[node name="TutorialTriggers" type="Node" parent="." index="7"]
+
+[node name="ItemGenerator" parent="." index="8" instance=ExtResource( 8 )]
 
 

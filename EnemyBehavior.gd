@@ -1,7 +1,8 @@
 extends Node
 
 enum EnemyBulletBehavior { ONE_DIRECT_BULLET, MULTIPLE_BULLETS,
-						   BOSS_PHASE_ONE, BOSS_PHASE_TWO, BOSS_PHASE_THREE }
+						   BOSS_PHASE_ONE, BOSS_PHASE_TWO, BOSS_PHASE_THREE,
+						   IDLE }
 
 var EnemyBullet = preload("res://EnemyBullet.tscn")
 
@@ -10,6 +11,9 @@ var SCREEN_WIDTH = 512
 var enemy
 
 var bullet_behavior = EnemyBulletBehavior.ONE_DIRECT_BULLET
+
+func set_idle():
+	bullet_behavior = EnemyBulletBehavior.IDLE
 
 func shoot_one_direct_bullet():
 	var new_bullet = EnemyBullet.instance()

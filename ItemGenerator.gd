@@ -2,6 +2,13 @@ extends Node
 
 var item_scene = preload("res://Item.tscn")
 
+var tutorial_item = [Vector2(0, 0)]
+var tutorial_item2 = [Vector2(0, 0), Vector2(0, 1)]
+var tutorial_item3 = [Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(0, 3),
+					  Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(1, 3),
+					  Vector2(2, 0), Vector2(2, 1), Vector2(2, 2), Vector2(2, 3),
+					  Vector2(3, 0), Vector2(3, 1), Vector2(3, 2), Vector2(3, 3)]
+
 var item3_1 = [Vector2(0, 0), Vector2(1, 0), Vector2(2, 0)]
 var item3_2 = [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1)]
 var item3s = [item3_1, item3_2]
@@ -42,6 +49,31 @@ func random_item(item_level):
 	set_item_cell_colors(item)
 	
 	return item
+
+
+func tutorial_item():
+	var item = item_scene.instance()
+	var bonus_attack = 1
+	item.init(tutorial_item)
+	item.stats().bonus_attack = bonus_attack
+	item.set_cell_text(0, str(bonus_attack))
+	
+	item.cell_list[0].set_color(ItemColor.RED)
+	
+	return item
+
+func tutorial_item2():
+	var item = item_scene.instance()
+	var bonus_attack = 1
+	item.init(tutorial_item2)
+	item.stats().bonus_attack = bonus_attack
+	item.set_cell_text(0, str(bonus_attack))
+	
+	item.cell_list[0].set_color(ItemColor.BLUE)
+	item.cell_list[1].set_color(ItemColor.RED)
+	
+	return item
+
 	
 func set_item_cell_colors(item):
 	for cell in item.cell_list:
