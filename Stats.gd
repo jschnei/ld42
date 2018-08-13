@@ -27,12 +27,16 @@ func _process(delta):
 	# Update game logic here.
 	pass
 
-func take_damage(bullet_stats):
+func get_damage(bullet_stats):
 	var damage = 0
 	damage += base_weakness * bullet_stats.base_damage
 	damage += red_weakness * bullet_stats.red_damage
 	damage += blue_weakness * bullet_stats.blue_damage
 	damage += green_weakness * bullet_stats.green_damage
+	return damage
+
+func take_damage(bullet_stats):
+	var damage = get_damage(bullet_stats)
 	cur_health -= damage
 	if cur_health <= 0:
 		emit_signal("death")
