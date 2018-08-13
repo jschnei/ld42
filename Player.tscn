@@ -93,7 +93,6 @@ autostart = false
 
 stream = ExtResource( 5 )
 volume_db = -30.0
-pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -102,7 +101,6 @@ bus = "Master"
 
 stream = ExtResource( 6 )
 volume_db = -30.0
-pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -111,7 +109,6 @@ bus = "Master"
 
 stream = ExtResource( 7 )
 volume_db = -30.0
-pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -120,7 +117,6 @@ bus = "Master"
 
 stream = ExtResource( 8 )
 volume_db = -30.0
-pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -128,5 +124,7 @@ bus = "Master"
 [connection signal="timeout" from="BulletTimer" to="." method="_on_BulletTimer_timeout"]
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_StunTimer_timeout"]
+
+[connection signal="finished" from="DeathSound" to="." method="_on_DeathSound_finished"]
 
 
