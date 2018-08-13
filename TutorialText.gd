@@ -11,6 +11,7 @@ func change_text():
 	if len(lines) > 0:
 		bbcode_text = "[center]" + lines.pop_front() + "[/center]"
 	else:
+		bbcode_text = ""
 		$TextAdvanceTimer.stop()
 
 func _on_TextAdvanceTimer_timeout():
