@@ -28,9 +28,13 @@ func _player_picked_up_item(game_item):
 func _update_player():
 	player.stats().bonus_attack = inventory.grid.get_bonus_attack_total()
 	player.stats().red_multiplier = inventory.grid.get_red_multiplier()
-	player.stats().blue_multiplier = inventory.grid.get_red_multiplier()
-	player.stats().green_multiplier = inventory.grid.get_red_multiplier()
+	player.stats().blue_multiplier = inventory.grid.get_blue_multiplier()
+	player.stats().green_multiplier = inventory.grid.get_green_multiplier()
 	_update_hud()
 
 func _update_hud():
-	inventory.get_node("InventoryHUD").set_attack_label(player.total_attack())
+	var hud = inventory.get_node("InventoryHUD")
+	hud.set_attack_label(player.total_attack())
+	hud.set_red_label(player.stats().red_multiplier)
+	hud.set_blue_label(player.stats().blue_multiplier)
+	hud.set_green_label(player.stats().green_multiplier)

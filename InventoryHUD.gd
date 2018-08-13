@@ -11,6 +11,15 @@ func _ready():
 	
 func set_attack_label(attack):
 	$AttackLabel.text = "Attack: " + str(attack)
+	
+func set_red_label(red):
+	$RedLabel.text = "Bonus vs. red: " + str(100*red) + "%"
+	
+func set_blue_label(blue):
+	$BlueLabel.text = "Bonus vs. blue: " + str(100*blue) + "%"
+
+func set_green_label(green):
+	$GreenLabel.text = "Bonus vs. green: " + str(100*green) + "%"	
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
