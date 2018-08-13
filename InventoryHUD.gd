@@ -10,7 +10,7 @@ func _ready():
 	pass
 	
 func set_attack_label(attack):
-	$AttackLabel.text = "Attack: " + str(attack)
+	$AttackLabel.text = "Base attack: " + str(attack)
 	
 func set_red_label(red):
 	$RedLabel.text = "Bonus vs. red: " + str(100*red) + "%"
