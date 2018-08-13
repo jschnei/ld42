@@ -29,6 +29,8 @@ func _ready():
 	left_wall = $Floor.position.x - $Floor.region_rect.end.x/2
 	right_wall = $Floor.position.x + $Floor.region_rect.end.x/2
 	
+	randomize()
+	
 	# initialize waves
 	for wave_ind in range(num_waves):
 		# generate random wave
