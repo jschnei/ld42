@@ -8,6 +8,7 @@ var MovingEnemy = preload("res://MovingEnemy.tscn")
 var RedEnemy = preload("res://RedEnemy.tscn")
 var BlueEnemy = preload("res://BlueEnemy.tscn")
 var GreenEnemy = preload("res://GreenEnemy.tscn")
+var ChameleonBoss = preload("res://ChameleonBoss.tscn")
 
 var GameItem = preload("res://GameItem.tscn")
 var TutorialTrigger = preload("res://TutorialTrigger.tscn")
@@ -35,6 +36,8 @@ var wave1 = {'enemies': [[StaticEnemy, Vector2(0, 100)], [StaticEnemy, Vector2(-
 			 'has_wall': true}
 var wave2 = {'enemies': [[MovingEnemy, Vector2(0, 100)]],
 			 'has_wall': true}
+var boss_wave = {'enemies': [[ChameleonBoss, Vector2(-180, 50)]],
+				 'has_wall': true}
 
 func _ready():
 	left_wall = $Floor.position.x - $Floor.region_rect.end.x/2
@@ -60,6 +63,9 @@ func _ready():
 	for wave_ind in range(num_waves):
 		# generate random wave
 		var wave = waves[wave_ind]
+			
+		if wave_ind == 0:
+			wave = boss_wave
 			
 		var displacement = Vector2(0, -(wave_ind + 1)*wave_height - wave_ind*rest_height)
 		
