@@ -10,11 +10,11 @@
 [ext_resource path="res://ItemGenerator.tscn" type="PackedScene" id=8]
 [ext_resource path="res://sounds/enemy_death.wav" type="AudioStream" id=9]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 catchup_margin = 400
-wave_height = 400
+wave_height = 450.0
 rest_height = 200
 
 [node name="Space" type="ParallaxBackground" parent="." index="0"]
