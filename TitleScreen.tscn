@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://art/background.png" type="Texture" id=2]
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -42,9 +43,45 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Begin Game"
+text = "Play"
 flat = false
 align = 1
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+position = Vector2( 457.618, 312.465 )
+z_index = -1
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 337.0
+margin_top = 258.0
+margin_right = 614.0
+margin_bottom = 338.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = "Space Game"
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "Space Game"
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode", "Grow Direction", "Size Flags", "custom_constants", "custom_fonts" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 
