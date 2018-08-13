@@ -22,9 +22,9 @@ func _ready():
 	
 func _process(delta):
 	var texture = ImageTexture.new()
+	texture.load(normal_path)
 	if player_state == PLAYER_ACTIVE:
 		var input_dir  = Vector2(0, 0)
-		texture.load(normal_path)
 		if Input.is_action_pressed("ui_right"):
 			input_dir += Vector2(1, 0)
 			texture.load(right_path)
@@ -42,19 +42,21 @@ func _process(delta):
 	
 func try_pick_up(game_item):
 	emit_signal("picked_up_item", game_item)
+	$ItemPickup.play()
 
 func take_damage(damage):
 	# stun player
 	if player_state == PLAYER_ACTIVE:
 		player_state = PLAYER_STUNNED
 		$StunTimer.start()
-	
+	$HitSound.play()
 	
 func total_attack():
 	return stats().base_attack_power + stats().bonus_attack
 
 func doomify():
 	# maybe should be some general death function if the player can die in some other way?
+	$DeathSound.play()
 	queue_free()
 	get_tree().change_scene("res://TitleScreen.tscn")
 	
@@ -71,7 +73,7 @@ func _on_BulletTimer_timeout():
 		bullet_stats.red_damage = int($Stats.red_multiplier * total_attack())
 		bullet_stats.blue_damage = int($Stats.blue_multiplier * total_attack())
 		bullet_stats.green_damage = int($Stats.green_multiplier * total_attack())
-		
+		$BulletSound.play()
 		$bullets.add_child(bullet)
 
 func _on_StunTimer_timeout():

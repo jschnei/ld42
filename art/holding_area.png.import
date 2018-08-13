@@ -7,10 +7,10 @@ path="res://.import/holding_area.png-17b45275b23f44c8fd60ec88bb97e9d0.stex"
 [deps]
 
 source_file="res://art/holding_area.png"
-source_md5="a723d1b21762405ede55cfa31c80869e"
+source_md5="b925cf54c09a0015c62fa354bfa56387"
 
 dest_files=[ "res://.import/holding_area.png-17b45275b23f44c8fd60ec88bb97e9d0.stex" ]
-dest_md5="9bc6aa500c17fc8e0334fa8523aab2d8"
+dest_md5="058a200cb0d81050363a04a8e3c8b404"
 
 [params]
 

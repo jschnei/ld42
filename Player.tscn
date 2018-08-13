@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://art/player.png" type="Texture" id=3]
 [ext_resource path="res://Stats.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sounds/pickup.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/bullet.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/enemy_bullet.wav" type="AudioStream" id=7]
+[ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/hitSound.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -84,6 +89,51 @@ process_mode = 1
 wait_time = 1.5
 one_shot = true
 autostart = false
+
+[node name="ItemPickup" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 5 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 6 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="EnemyBullet" type="AudioStreamPlayer" parent="." index="9"]
+
+stream = ExtResource( 7 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." index="10"]
+
+stream = ExtResource( 8 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="HitSound" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 9 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_BulletTimer_timeout"]
 
