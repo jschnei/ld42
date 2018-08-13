@@ -55,8 +55,11 @@ func total_attack():
 	return stats().base_attack_power + stats().bonus_attack
 
 func doomify():
+	# maybe should be some general death function if the player can die in some other way?
 	$DeathSound.play()
 	queue_free()
+	get_tree().change_scene("res://TitleScreen.tscn")
+	
 	
 func stats():
 	return get_node("Stats")

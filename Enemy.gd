@@ -38,7 +38,4 @@ func die():
 	queue_free()
 
 func _on_ShotTimer_timeout():
-	var new_bullet = EnemyBullet.instance()
-	new_bullet.position = position
-	$Bullets.add_child(new_bullet)
-	new_bullet.direction = (target.position - position).normalized()
+	$EnemyBehavior.shoot()
