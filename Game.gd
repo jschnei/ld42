@@ -25,7 +25,7 @@ export (float) var rest_height = 200
 var empty_wave = {'enemies': [],
 				  'has_wall': false}
 var tutorial_wave = {'enemies': [],
-					 'has_wall': true,
+					 'has_wall': false,
 					 'tutorial_text': ['Oh no!',
 					                   'Our spaceship is being chased by',
 									   'ENCROACHING DOOM!',
@@ -46,6 +46,7 @@ func _ready():
 	randomize()
 	
 	var waves = [tutorial_wave,
+				 boss_wave,
 				 gen_wave(),
 				 gen_wave(),
 				 gen_wave(),
@@ -63,9 +64,6 @@ func _ready():
 	for wave_ind in range(num_waves):
 		# generate random wave
 		var wave = waves[wave_ind]
-			
-		if wave_ind == 0:
-			wave = boss_wave
 			
 		var displacement = Vector2(0, -(wave_ind + 1)*wave_height - wave_ind*rest_height)
 		

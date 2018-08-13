@@ -2,7 +2,7 @@
 
 [ext_resource path="res://TutorialText.gd" type="Script" id=1]
 
-[node name="TutorialText" type="RichTextLabel" index="0"]
+[node name="TutorialText" type="RichTextLabel"]
 
 anchor_left = 0.0
 anchor_top = 0.0
