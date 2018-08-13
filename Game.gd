@@ -45,28 +45,33 @@ var tutorial_wave2 = {'enemies': [[DummyEnemy, Vector2(0, 100), 0.0]],
 onready var tutorial_wave3 = {'enemies': [],
 					  'has_wall': false,
 					  'items': [[$ItemGenerator.tutorial_item(), Vector2(0, 200)]],
-					  'tutorial_text': ['It\'s an item!',
+					  'tutorial_text': ['It\'s an item! Go get it!',
 										'Pick it up then use your mouse',
 										'to drag it into your inventory.',
-										'Items increase your attack damage.']
+										'Items in your inventory give you bonus attack damage.',
+										'The number on the item tells you how much.']
 					  }
 
 var tutorial_wave4 = {'enemies': [[StaticEnemy, Vector2(0, 100), 0.0]],
 				     'has_wall': true,
 				     'tutorial_text': ['Enemies can also shoot you!',
-									   'If you get hit, you will be stunned!'],
-					 'level': 2}
+									   'If you get hit, you will be temporarily stunned!'],
+					 'level': 3}
 
-var tutorial_wave5 = {'enemies': [[StaticEnemy, Vector2(40, 100), 1.0], [StaticEnemy, Vector2(-40, 100), 1.0]],
+onready var tutorial_wave5 = {'enemies': [[StaticEnemy, Vector2(40, 100), 1.0, $ItemGenerator.tutorial_item2()], [StaticEnemy, Vector2(-40, 100), 0.0]],
 				     'has_wall': true,
-				     'tutorial_text': ['Enemies can drop items too!'],
-					 'level': 2}
+				     'tutorial_text': ['Enemies can drop items too!',
+									   'Get that item and drag it to your inventory!'],
+					 'level': 3}
 
-var tutorial_wave6 = {'enemies': [],
-					 'has_wall': false,
-					 'tutorial_text': ['Adjacent pairs of matching colors gives',
-									   'you a boost vs certain enemy types.',
-									   'Try to arrange your items cleverly!']
+onready var tutorial_wave6 = {'enemies': [],
+							  'has_wall': false,
+							  'items': [[$ItemGenerator.tutorial_item2b(), Vector2(0, 100)]],
+							  'tutorial_text': ['Whenever two squares of the same color touch in your inventory,',
+									 		    'you get a 25% damage bonus to enemies of that color.',
+												'you get a 25% damage bonus to enemies of that color.',
+											    'Try rearranging your inventory so the 4 red squares are next to each other!',
+												'Try rearranging your inventory so the 4 red squares are next to each other!']
 					}
 
 onready var tutorial_wave7 = {'enemies': [],
@@ -111,6 +116,8 @@ func _ready():
 	
 	randomize()
 	
+	$Music.play()
+	
 	var tutorial_waves = [tutorial_wave,
 						 empty_wave,
 						 tutorial_wave2,
@@ -121,6 +128,7 @@ func _ready():
 						 empty_wave,
 						 tutorial_wave5,
 						 tutorial_wave6,
+						 empty_wave,
 						 empty_wave,
 						 tutorial_wave7,
 						 tutorial_wave8,
@@ -192,7 +200,10 @@ func _ready():
 		
 		for spawn in wave['enemies']:
 			var enemy_position = $Player.position + displacement + spawn[1]
-			var enemy = _create_enemy(spawn[0], enemy_position, level, spawn[2])
+			var enemy_item = null
+			if len(spawn) >= 4:
+				enemy_item = spawn[3]
+			var enemy = _create_enemy(spawn[0], enemy_position, level, spawn[2], enemy_item)
 			enemy.connect("death", self, "_enemy_death")
 			if wall:
 				enemy.connect("death_by_player", wall, "weaken_wall")
@@ -248,7 +259,7 @@ func colored_wave(color_ind):
 	return {'enemies': [[enemyType, Vector2(0, 100), 0.25], [enemyType, Vector2(-80, 100), 0.25], [enemyType, Vector2(80, 100), 0.25]],
 			'has_wall': true}
 			
-func _create_enemy(enemy_type, enemy_position, level, prob):
+func _create_enemy(enemy_type, enemy_position, level, prob, item_to_drop):
 	var enemy = enemy_type.instance()
 	enemy.position = enemy_position
 	enemy.connect("dropped_item", self, "_enemy_dropped_item", [enemy])
@@ -258,6 +269,8 @@ func _create_enemy(enemy_type, enemy_position, level, prob):
 	
 	if randf() <= prob:
 		enemy.item_to_drop = $ItemGenerator.random_item(level)
+	if item_to_drop != null:
+		enemy.item_to_drop = item_to_drop
 	
 	$Enemies.add_child(enemy)
 	return enemy
@@ -286,3 +299,4 @@ func _enemy_dropped_item(enemy):
 
 func _enemy_death():
 	$EnemyDeathSound.play()
+	

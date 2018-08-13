@@ -2,9 +2,10 @@ extends "res://Enemy.gd"
 
 var Bullet = preload("res://Bullet.gd")
 
-var red_boss_path = "res://art/red_enemy.png"
-var green_boss_path = "res://art/green_enemy.png"
-var blue_boss_path = "res://art/blue_enemy.png"
+var red_boss_path = "res://art/red_boss.png"
+var green_boss_path = "res://art/green_boss.png"
+var blue_boss_path = "res://art/blue_boss.png"
+
 
 # 3 phases for now
 var phase = 1

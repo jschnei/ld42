@@ -133,7 +133,7 @@ bus = "Master"
 
 [node name="TutorialText" parent="." index="12" instance=ExtResource( 10 )]
 
-margin_top = -54.0
+margin_top = -72.0
 margin_bottom = -34.0
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_BulletTimer_timeout"]
