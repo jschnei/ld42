@@ -3,6 +3,8 @@ extends KinematicBody2D
 export (float) var SPEED = 200
 var direction = Vector2(0, -1)
 
+var is_player_bullet = false
+
 func _ready():
 	pass
 

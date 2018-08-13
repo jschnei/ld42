@@ -3,6 +3,7 @@ extends Node
 var max_health = 5
 var cur_health = max_health
 
+var base_weakness = 1
 var red_weakness = 0
 var blue_weakness = 0
 var green_weakness = 0
@@ -28,7 +29,7 @@ func _process(delta):
 
 func take_damage(bullet_stats):
 	var damage = 0
-	damage += bullet_stats.base_damage
+	damage += base_weakness * bullet_stats.base_damage
 	damage += red_weakness * bullet_stats.red_damage
 	damage += blue_weakness * bullet_stats.blue_damage
 	damage += green_weakness * bullet_stats.green_damage
