@@ -13,6 +13,7 @@ func _ready():
 	player = $ViewportContainer/Viewport/Game/Player
 	inventory = $ViewportContainer2/Viewport/Inventory
 	player.connect("picked_up_item", self, "_player_picked_up_item")
+	player.connect("destroyed_all_items", self, "_player_destroyed_all_items")
 	inventory.grid.connect("updated", self, "_update_player")
 	_update_hud()
 
@@ -24,6 +25,10 @@ func _player_picked_up_item(game_item):
 		game_item.picked_up = true
 		inventory.pickup_item(game_item.item)
 		game_item.queue_free()
+
+func _player_destroyed_all_items():
+	print("destroying all the items!")
+	inventory.trash_all_items()
 		
 func _update_player():
 	player.stats().bonus_attack = inventory.grid.get_bonus_attack_total()

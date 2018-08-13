@@ -13,6 +13,7 @@ var up_path = "res://art/player_moving_up.png"
 var down_path = "res://art/player_moving_down.png"
 
 signal picked_up_item(item)
+signal destroyed_all_items
 
 func _ready():
 	# Called every time the node is added to the scene.

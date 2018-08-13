@@ -149,7 +149,8 @@ func trash_item(item):
 	item.queue_free()
 	
 func trash_all_items():
-	for item in grid.items_in_grid:
+	var items = grid.items_in_grid.duplicate()
+	for item in items:
 		trash_item(item)
 	if holding_area.held_item != null:
 		trash_item(holding_area.held_item)

@@ -65,6 +65,26 @@ var tutorial_wave6 = {'enemies': [],
 									   'Try to arrange your items cleverly!']
 					}
 
+onready var tutorial_wave7 = {'enemies': [],
+							  'has_wall': false,
+							  'items': [[$ItemGenerator.tutorial_item3(), Vector2(0, 200)]],
+							  'tutorial_text': ['Ooh another item!']
+							  }
+
+var tutorial_wave8 = {'enemies': [],
+					 'has_wall': false,
+					 'tutorial_text': ['Oh no this item is too large!',
+									   'Right-click items to delete them.',
+									   'Try not to run out of space!']
+					}
+
+var tutorial_wave9 = {'enemies': [],
+					 'has_wall': false,
+					 'end_tutorial': true,
+					 'tutorial_text': ['The real game begins here.',
+									   'Good luck!']
+					}
+
 var wave1 = {'enemies': [[StaticEnemy, Vector2(0, 100), 0.2], [StaticEnemy, Vector2(-80, 100), 0.2], [StaticEnemy, Vector2(80, 100), 0.2]],
 			 'has_wall': true}
 var wave2 = {'enemies': [[MovingEnemy, Vector2(0, 100), 0.6]],
@@ -88,6 +108,13 @@ func _ready():
 				 empty_wave,
 				 tutorial_wave5,
 				 tutorial_wave6,
+				 empty_wave,
+				 tutorial_wave7,
+				 tutorial_wave8,
+				 empty_wave,
+				 empty_wave,
+				 tutorial_wave9,
+				 empty_wave,
 				 gen_wave(),
 				 gen_wave(),
 				 gen_wave(),
@@ -125,6 +152,8 @@ func _ready():
 			var tutorial_trigger = TutorialTrigger.instance()
 			tutorial_trigger.position = $Player.position + displacement + Vector2(0, wave_height)
 			tutorial_trigger.lines = wave['tutorial_text']
+			if 'end_tutorial' in wave and wave['end_tutorial']:
+				tutorial_trigger.destroy_items = true
 			$TutorialTriggers.add_child(tutorial_trigger)
 		
 		if 'items' in wave:
