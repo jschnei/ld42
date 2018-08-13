@@ -57,7 +57,7 @@ var tutorial_wave4 = {'enemies': [[StaticEnemy, Vector2(0, 100), 0.0]],
 var tutorial_wave5 = {'enemies': [[StaticEnemy, Vector2(40, 100), 1.0], [StaticEnemy, Vector2(-40, 100), 1.0]],
 				     'has_wall': true,
 				     'tutorial_text': ['Enemies can drop items too!',
-									   'You can only pick up an item if you have room in your holding area.'],
+									   'You can only pick up an item if you have space.'],
 					 'level': 3}
 
 var tutorial_wave6 = {'enemies': [],
