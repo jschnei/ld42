@@ -33,7 +33,7 @@ func _ready():
 	initialize_holding_area()
 	
 	# Uncomment if you want to test inventory by itself.
-	"""
+	
 	var item1 = item.instance()
 	item1.init([Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)])
 
@@ -45,7 +45,7 @@ func _ready():
 		item.connect("right_clicked_on", self, "_item_right_clicked_on", [item])
 		item.stats().bonus_attack = 1
 		add_child(item)
-	"""
+	
 	
 	
 func initialize_holding_area():
@@ -100,13 +100,20 @@ func drop():
 		if grid.can_place_item(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame):
 			grid.place_item(held_item, held_item.point_at(held_item_cell), grid_cell_clicked_this_frame)
 			held_item = null
+			$PlaceItemSound.play()
+		else:
+			$InvalidPlaceSound.play()
 	elif holding_area_clicked_this_frame:
 		if holding_area.can_place_item():
 			holding_area.place_item(held_item)
 			held_item = null
+			$PlaceItemSound.play()
+		else:
+			$InvalidPlaceSound.play()
 	else:
 		restore_saved_item(held_item)
 		held_item = null
+		$InvalidPlaceSound.play()
 
 func can_pickup_item():
 	return holding_area.held_item == null and held_item == null
@@ -169,6 +176,7 @@ func _process(delta):
 				grid.remove_item(held_item)
 			if held_item == holding_area.held_item:
 				holding_area.remove_item(held_item)
+			$HoldItemSound.play()
 		else:
 			drop()
 	elif released_this_frame and time_held >= 0.17:

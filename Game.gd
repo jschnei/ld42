@@ -78,7 +78,8 @@ func _ready():
 	
 	randomize()
 	
-	var waves = [tutorial_wave,
+	var waves = [tutorial_wave3,
+				 tutorial_wave,
 				 empty_wave,
 				 tutorial_wave2,
 				 tutorial_wave3,
