@@ -33,7 +33,7 @@ func _ready():
 	initialize_holding_area()
 	
 	# Uncomment if you want to test inventory by itself.
-	"""
+	
 	var item1 = item.instance()
 	item1.init([Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)])
 
@@ -42,9 +42,9 @@ func _ready():
 
 	for item in [item1, item2]:
 		item.connect("clicked_on", self, "_item_clicked_on", [item])
+		item.connect("right_clicked_on", self, "_item_right_clicked_on", [item])
 		item.stats().bonus_attack = 1
 		add_child(item)
-	"""
 	
 	
 func initialize_holding_area():
@@ -64,7 +64,9 @@ func _item_clicked_on(cell_index, item):
 	item_clicked_this_frame = item
 	cell_index_clicked_this_frame = cell_index
 	
-
+func _item_right_clicked_on(cell_index, item):
+	trash_item(item)
+	
 # v is vector of the grid "matrix" clicked		
 func _grid_clicked_on(v):
 	grid_cell_clicked_this_frame = v
@@ -112,6 +114,7 @@ func pickup_item(item):
 	assert can_pickup_item()
 
 	item.connect("clicked_on", self, "_item_clicked_on", [item])
+	item.connect("right_clicked_on", self, "_item_right_clicked_on", [item])
 	add_child(item)
 	holding_area.place_item(item)
 	
@@ -136,6 +139,13 @@ func restore_saved_item(item):
 func trash_held_item():
 	held_item.queue_free()
 	held_item = null
+	
+func trash_item(item):
+	if item in grid.items_in_grid:
+		grid.remove_item(item)
+	if item == holding_area.held_item:
+		holding_area.remove_item(item)
+	item.queue_free()
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
