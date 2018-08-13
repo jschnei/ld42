@@ -13,6 +13,9 @@ var item4_4 = [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(2,1)]
 var item4_5 = [Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(1,1)]
 var item4s = [item4_1, item4_2, item4_3, item4_4, item4_5]
 
+var ItemColor = preload("res://ItemCell.gd").ItemColor
+var colors = [ItemColor.RED, ItemColor.GREEN, ItemColor.BLUE]
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -35,9 +38,16 @@ func random_item(item_level):
 	item.init(item_points)
 	item.stats().bonus_attack = bonus_attack
 	item.set_cell_text(0, str(bonus_attack))
+	
+	set_item_cell_colors(item)
+	
 	return item
+	
+func set_item_cell_colors(item):
+	for cell in item.cell_list:
+		cell.set_color(colors[randi()%(len(colors))])
 
-# Pick one of the random 8 transormations.
+# Pick one of the random 8 transformations.
 func random_transform(point):
 	for i in range(randi()%4):
 		point = Vector2(-point.y, point.x)

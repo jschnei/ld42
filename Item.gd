@@ -4,9 +4,11 @@ signal clicked_on(cell_index)
 
 export (int) var CELL_SIZE
 
+var item_cell = preload("res://ItemCell.tscn")
+
+# These two lists should correspond to each other.
 var cell_point_list = []
 var cell_list = []
-var item_cell = preload("res://ItemCell.tscn")
 
 # A pair of item base point and grid base point that identifies where
 # the item is in the grid.

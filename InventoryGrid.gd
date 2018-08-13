@@ -13,7 +13,9 @@ var inventory_cell = preload("res://InventoryGridCell.tscn")
 # The plan is each entry of grid_contents contains a reference
 # to the item it holds, or null if it isn't holding any item. 
 # (this might be a bad way to do it though, I'm not sure)
+# grid_item_cells is the same but holds individual ItemCells
 var grid_contents = []
+var grid_item_cells = []
 var items_in_grid = []
 
 func _ready():
@@ -24,13 +26,17 @@ func _ready():
 			new_cell.connect("clicked_on", self, "_cell_clicked_on", [v])
 			new_cell.connect("released", self, "_cell_released", [v])
 	
-	# In grid_contents matrix (x,y) would be
-	# the xth column and yth row.	
 	for i in range(WIDTH):
 		var empty_row = []
 		for j in range(HEIGHT):
 			empty_row.append(null)
 		grid_contents.append(empty_row)
+		
+	for i in range(WIDTH):
+		var empty_row = []
+		for j in range(HEIGHT):
+			empty_row.append(null)
+		grid_item_cells.append(empty_row)
 		
 	
 """func create_and_add_cell(v):	
@@ -82,9 +88,11 @@ func place_item(item, item_base_point, grid_base_point):
 	assert not item in items_in_grid
 	
 	items_in_grid.append(item)
-	for cell in item.cell_point_list:
-		var v = cell - item_base_point + grid_base_point
+	for i in range(len(item.cell_list)):
+		var cell_point = item.cell_point_list[i]
+		var v = cell_point - item_base_point + grid_base_point
 		grid_contents[v[0]][v[1]] = item
+		grid_item_cells[v[0]][v[1]] = item.cell_list[i]
 	
 	item.position = position + (grid_base_point - item_base_point) * CELL_SIZE
 	item.grid_location = [item_base_point, grid_base_point]
@@ -97,6 +105,7 @@ func remove_item(item):
 		for j in range(HEIGHT):
 			if grid_contents[i][j] == item:
 				grid_contents[i][j] = null
+				grid_item_cells[i][j] = null
 	items_in_grid.erase(item)
 	item.grid_location = null
 	emit_signal("updated")

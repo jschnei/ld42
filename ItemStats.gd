@@ -1,5 +1,8 @@
 extends Node
 
+# Note that this provides stats for both Item and ItemCell.
+# Some of these variables might only make sense for one of them.
+
 var bonus_attack = 0
 
 func _ready():
