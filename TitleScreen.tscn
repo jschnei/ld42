@@ -48,14 +48,39 @@ text = "Play"
 flat = false
 align = 1
 
-[node name="Sprite" type="Sprite" parent="." index="1"]
+[node name="ButtonMinusTutorial" type="Button" parent="." index="1"]
 
-position = Vector2( 457.618, 312.465 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 331.0
+margin_top = 464.0
+margin_right = 577.0
+margin_bottom = 505.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Play (skip Tutorial)"
+flat = false
+align = 1
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+
+position = Vector2( 457.618, 310.465 )
 z_index = -1
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." index="2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -87,7 +112,7 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Anchor", "BBCode", "Margin", "Rect", "custom_colors", "custom_constants", "custom_fonts" ]
 
-[node name="FontTween" type="Tween" parent="." index="3"]
+[node name="FontTween" type="Tween" parent="." index="4"]
 
 repeat = false
 playback_process_mode = 1
@@ -98,6 +123,8 @@ playback/speed = 1.0
 _sections_unfolded = [ "playback" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+
+[connection signal="pressed" from="ButtonMinusTutorial" to="." method="_on_ButtonMinusTutorial_pressed"]
 
 [connection signal="tween_completed" from="FontTween" to="." method="_on_FontTween_tween_completed"]
 
