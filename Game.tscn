@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://art/space1.png" type="Texture" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://EncroachingDoom.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ItemGenerator.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sounds/enemy_death.wav" type="AudioStream" id=9]
 
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
 catchup_margin = 400
@@ -121,5 +122,14 @@ _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform"
 [node name="TutorialTriggers" type="Node" parent="." index="7"]
 
 [node name="ItemGenerator" parent="." index="8" instance=ExtResource( 8 )]
+
+[node name="EnemyDeathSound" type="AudioStreamPlayer" parent="." index="9"]
+
+stream = ExtResource( 9 )
+volume_db = -30.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

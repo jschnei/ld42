@@ -21,7 +21,7 @@ collision_layer = 2
 collision_mask = 5
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
+_sections_unfolded = [ "Collision", "Transform", "Visibility" ]
 EnemyBullet = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]

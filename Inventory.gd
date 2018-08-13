@@ -33,7 +33,7 @@ func _ready():
 	initialize_holding_area()
 	
 	# Uncomment if you want to test inventory by itself.
-	
+	"""
 	var item1 = item.instance()
 	item1.init([Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)])
 
@@ -45,7 +45,7 @@ func _ready():
 		item.connect("right_clicked_on", self, "_item_right_clicked_on", [item])
 		item.stats().bonus_attack = 1
 		add_child(item)
-	
+	"""
 	
 	
 func initialize_holding_area():
@@ -145,7 +145,7 @@ func restore_saved_item(item):
 		pass
 
 func trash_held_item():
-	held_item.queue_free()
+	trash_item(held_item)
 	held_item = null
 	
 func trash_item(item):
@@ -153,6 +153,7 @@ func trash_item(item):
 		grid.remove_item(item)
 	if item == holding_area.held_item:
 		holding_area.remove_item(item)
+	$TrashItemSound.play()
 	item.queue_free()
 	
 func trash_all_items():

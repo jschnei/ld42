@@ -98,8 +98,7 @@ func _ready():
 	
 	randomize()
 	
-	var waves = [tutorial_wave3,
-				 tutorial_wave,
+	var waves = [tutorial_wave,
 				 empty_wave,
 				 tutorial_wave2,
 				 tutorial_wave3,
@@ -168,6 +167,7 @@ func _ready():
 			print(spawn)
 			var enemy_position = $Player.position + displacement + spawn[1]
 			var enemy = _create_enemy(spawn[0], enemy_position, level, spawn[2])
+			enemy.connect("death", self, "_enemy_death")
 			if wall:
 				enemy.connect("death", wall, "weaken_wall")
 				wall.strength += 1
@@ -217,3 +217,6 @@ func _enemy_dropped_item(enemy):
 		new_item.item = enemy.item_to_drop
 		new_item.position = enemy.position
 		add_child(new_item)
+
+func _enemy_death():
+	$EnemyDeathSound.play()
