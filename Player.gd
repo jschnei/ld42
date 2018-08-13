@@ -49,12 +49,13 @@ func take_damage(damage):
 	if player_state == PLAYER_ACTIVE:
 		player_state = PLAYER_STUNNED
 		$StunTimer.start()
-	
+	$HitSound.play()
 	
 func total_attack():
 	return stats().base_attack_power + stats().bonus_attack
 
 func doomify():
+	$DeathSound.play()
 	queue_free()
 	
 func stats():
@@ -69,7 +70,7 @@ func _on_BulletTimer_timeout():
 		bullet_stats.red_damage = int($Stats.red_multiplier * total_attack())
 		bullet_stats.blue_damage = int($Stats.blue_multiplier * total_attack())
 		bullet_stats.green_damage = int($Stats.green_multiplier * total_attack())
-		
+		$BulletSound.play()
 		$bullets.add_child(bullet)
 
 func _on_StunTimer_timeout():
