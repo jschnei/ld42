@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://InventoryGridCell.gd" type="Script" id=1]
-[ext_resource path="res://art/orangeItemCell.png" type="Texture" id=2]
+[ext_resource path="res://art/greyItemCell.png" type="Texture" id=2]
 
-[node name="InventoryGridCell" type="Area2D"]
+[node name="InventoryGridCell" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
