@@ -11,9 +11,11 @@ var item_to_drop = null
 func _ready():
 	pass
 
-func take_damage(damage):
-	$Stats.take_damage(damage)
-	$HealthBar.update_bar($Stats.cur_health, $Stats.max_health)
+func take_damage(bullet_stats):
+	if $Stats.get_damage(bullet_stats) > 0:
+		$HitSound.play()
+		$Stats.take_damage(bullet_stats)
+		$HealthBar.update_bar($Stats.cur_health, $Stats.max_health)
 		
 func doomify():
 	die()
@@ -32,10 +34,13 @@ func item_probability(level):
 func _on_Stats_death():
 	emit_signal("dropped_item")
 	die()
-
+	
 func die():
 	emit_signal("death")
 	queue_free()
 
 func _on_ShotTimer_timeout():
 	$EnemyBehavior.shoot()
+
+
+
