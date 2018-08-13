@@ -9,6 +9,7 @@ export (int) var HEIGHT
 export (int) var WIDTH
 
 var inventory_cell = preload("res://InventoryGridCell.tscn")
+var ItemColor = preload("res://ItemCell.gd").ItemColor
 
 # The plan is each entry of grid_contents contains a reference
 # to the item it holds, or null if it isn't holding any item. 
@@ -115,7 +116,23 @@ func get_bonus_attack_total():
 	for item in items_in_grid:
 		bonus_attack += item.stats().bonus_attack
 	return bonus_attack
-		
+	
+func cell_is_colored(point, color):
+	if grid_contents[point[0]][point[1]] == null:
+		return false
+	return grid_item_cells[point[0]][point[1]].color == color
+	
+func count_color_pairs(color):
+	var total = 0
+	for i in range(WIDTH):
+		for j in range(HEIGHT):
+			if cell_is_colored([i,j], color):
+				if i+1 < WIDTH and cell_is_colored([i+1,j], color):
+					total += 1
+				if j+1 < HEIGHT and cell_is_colored([i,j+1], color):
+					total += 1
+	return total
+				
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
