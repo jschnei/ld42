@@ -17,8 +17,8 @@ collision_mask = 7
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-normal_speed = 30.0
-catchup_speed = 95
+normal_speed = 35.0
+catchup_speed = 110.0
 
 [node name="head" type="Sprite" parent="." index="0"]
 

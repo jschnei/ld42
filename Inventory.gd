@@ -146,13 +146,14 @@ func restore_saved_item(item):
 
 func trash_held_item():
 	trash_item(held_item)
-	held_item = null
 	
 func trash_item(item):
 	if item in grid.items_in_grid:
 		grid.remove_item(item)
 	if item == holding_area.held_item:
 		holding_area.remove_item(item)
+	if item == held_item:
+		held_item = null
 	$TrashItemSound.play()
 	item.queue_free()
 	

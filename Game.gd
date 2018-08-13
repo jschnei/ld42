@@ -178,7 +178,7 @@ func _ready():
 			var enemy = _create_enemy(spawn[0], enemy_position, level, spawn[2])
 			enemy.connect("death", self, "_enemy_death")
 			if wall:
-				enemy.connect("death", wall, "weaken_wall")
+				enemy.connect("death_by_player", wall, "weaken_wall")
 				wall.strength += 1
 
 func gen_easy_wave(level):

@@ -14,7 +14,7 @@
 
 script = ExtResource( 1 )
 catchup_margin = 400
-wave_height = 400
+wave_height = 450.0
 rest_height = 200
 
 [node name="Space" type="ParallaxBackground" parent="." index="0"]

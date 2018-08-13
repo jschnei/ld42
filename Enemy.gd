@@ -5,6 +5,7 @@ export (PackedScene) var EnemyBullet = preload("EnemyBullet.tscn")
 
 signal dropped_item
 signal death
+signal death_by_player
 
 var item_to_drop = null
 
@@ -35,6 +36,7 @@ func item_probability(level):
 
 func _on_Stats_death():
 	emit_signal("dropped_item")
+	emit_signal("death_by_player")
 	die()
 	
 func die():

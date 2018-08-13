@@ -14,7 +14,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 25, 25 )
 
-[node name="Enemy" type="KinematicBody2D" index="0"]
+[node name="Enemy" type="KinematicBody2D"]
 
 position = Vector2( 357.419, 88.5197 )
 input_pickable = false
