@@ -108,6 +108,8 @@ func _ready():
 	
 	randomize()
 	
+	$Music.play()
+	
 	var tutorial_waves = [tutorial_wave,
 						 empty_wave,
 						 tutorial_wave2,
@@ -275,3 +277,4 @@ func _enemy_dropped_item(enemy):
 
 func _enemy_death():
 	$EnemyDeathSound.play()
+	
