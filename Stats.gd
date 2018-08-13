@@ -3,8 +3,16 @@ extends Node
 var max_health = 5
 var cur_health = max_health
 
+var red_weakness = 0
+var blue_weakness = 0
+var green_weakness = 0
+
 var base_attack_power = 1
 var bonus_attack = 0
+
+var red_multiplier = 0.0
+var blue_multiplier = 0.0
+var green_multiplier = 0.0
 
 signal death
 
@@ -18,7 +26,12 @@ func _process(delta):
 	# Update game logic here.
 	pass
 
-func take_damage(damage):
+func take_damage(bullet_stats):
+	var damage = 0
+	damage += bullet_stats.base_damage
+	damage += red_weakness * bullet_stats.red_damage
+	damage += blue_weakness * bullet_stats.blue_damage
+	damage += green_weakness * bullet_stats.green_damage
 	cur_health -= damage
 	if cur_health <= 0:
 		emit_signal("death")

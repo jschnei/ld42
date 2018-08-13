@@ -27,6 +27,9 @@ func _player_picked_up_item(game_item):
 		
 func _update_player():
 	player.stats().bonus_attack = inventory.grid.get_bonus_attack_total()
+	player.stats().red_multiplier = inventory.grid.get_red_multiplier()
+	player.stats().blue_multiplier = inventory.grid.get_red_multiplier()
+	player.stats().green_multiplier = inventory.grid.get_red_multiplier()
 	_update_hud()
 
 func _update_hud():

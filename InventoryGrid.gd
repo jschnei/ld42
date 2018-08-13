@@ -7,6 +7,7 @@ signal updated
 export (int) var CELL_SIZE
 export (int) var HEIGHT
 export (int) var WIDTH
+export (float) var PAIR_MULTIPLIER = 0.25
 
 var inventory_cell = preload("res://InventoryGridCell.tscn")
 var ItemColor = preload("res://ItemCell.gd").ItemColor
@@ -116,6 +117,19 @@ func get_bonus_attack_total():
 	for item in items_in_grid:
 		bonus_attack += item.stats().bonus_attack
 	return bonus_attack
+	
+func get_red_multiplier():
+	return get_color_multiplier(ItemColor.RED)
+	
+func get_blue_multiplier():
+	return get_color_multiplier(ItemColor.BLUE)
+	
+func get_green_multiplier():
+	return get_color_multiplier(ItemColor.GREEN)
+	
+	
+func get_color_multiplier(color):
+	return PAIR_MULTIPLIER * count_color_pairs(color)
 	
 func cell_is_colored(point, color):
 	if grid_contents[point[0]][point[1]] == null:
