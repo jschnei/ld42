@@ -6,6 +6,9 @@ var Wall = preload("res://Wall.tscn")
 # enemy types go here
 var StaticEnemy = preload("res://Enemy.tscn")
 var MovingEnemy = preload("res://MovingEnemy.tscn")
+var RedEnemy = preload("res://RedEnemy.tscn")
+var BlueEnemy = preload("res://BlueEnemy.tscn")
+var GreenEnemy = preload("res://GreenEnemy.tscn")
 
 var GameItem = preload("res://GameItem.tscn")
 
@@ -35,11 +38,13 @@ func _ready():
 	for wave_ind in range(num_waves):
 		# generate random wave
 		var wave = empty_wave
-		var choice = randi() % 2
+		var choice = randi() % 3
 		if choice == 0:
 			wave = wave1
-		else:
+		elif choice == 1:
 			wave = wave2
+		elif choice == 2:
+			wave = random_colored_wave()
 			
 		var displacement = Vector2(0, -(wave_ind + 1)*wave_height - wave_ind*rest_height)
 		
@@ -57,6 +62,13 @@ func _ready():
 				enemy.connect("death", wall, "weaken_wall")
 				wall.strength += 1
 
+func random_colored_wave():
+	var coloredEnemies = [RedEnemy, BlueEnemy, GreenEnemy]
+	var ind = randi() % 3
+	var enemyType = coloredEnemies[ind]
+	return {'enemies': [[enemyType, Vector2(0, 100)], [enemyType, Vector2(-80, 100)], [enemyType, Vector2(80, 100)]],
+			'has_wall': true}
+	
 			
 func _create_enemy(enemy_type, enemy_position, level):
 	var enemy = enemy_type.instance()
