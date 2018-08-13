@@ -2,8 +2,9 @@ extends Node
 
 var item_scene = preload("res://Item.tscn")
 
-var tutorial_item = [Vector2(0, 0)]
+var tutorial_item = [Vector2(0, 0), Vector2(1, 0)]
 var tutorial_item2 = [Vector2(0, 0), Vector2(0, 1)]
+var tutorial_item2b = [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(1, 2)]
 var tutorial_item3 = [Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(0, 3),
 					  Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(1, 3),
 					  Vector2(2, 0), Vector2(2, 1), Vector2(2, 2), Vector2(2, 3),
@@ -58,19 +59,34 @@ func tutorial_item():
 	item.stats().bonus_attack = bonus_attack
 	item.set_cell_text(0, str(bonus_attack))
 	
-	item.cell_list[0].set_color(ItemColor.RED)
+	item.cell_list[0].set_color(ItemColor.BLUE)
+	item.cell_list[1].set_color(ItemColor.RED)
 	
 	return item
 
 func tutorial_item2():
 	var item = item_scene.instance()
-	var bonus_attack = 1
+	var bonus_attack = 2
 	item.init(tutorial_item2)
 	item.stats().bonus_attack = bonus_attack
 	item.set_cell_text(0, str(bonus_attack))
 	
-	item.cell_list[0].set_color(ItemColor.BLUE)
-	item.cell_list[1].set_color(ItemColor.RED)
+	item.cell_list[0].set_color(ItemColor.RED)
+	item.cell_list[1].set_color(ItemColor.BLUE)
+	
+	return item
+
+func tutorial_item2b():
+	var item = item_scene.instance()
+	var bonus_attack = 3
+	item.init(tutorial_item2b)
+	item.stats().bonus_attack = bonus_attack
+	item.set_cell_text(0, str(bonus_attack))
+	
+	item.cell_list[0].set_color(ItemColor.RED)
+	item.cell_list[1].set_color(ItemColor.BLUE)
+	item.cell_list[2].set_color(ItemColor.GREEN)
+	item.cell_list[3].set_color(ItemColor.RED)
 	
 	return item
 
