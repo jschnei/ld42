@@ -74,6 +74,16 @@ func tutorial_item2():
 	
 	return item
 
+func tutorial_item3():
+	var item = item_scene.instance()
+	var bonus_attack = 0
+	item.init(tutorial_item3)
+	item.stats().bonus_attack = bonus_attack
+	item.set_cell_text(0, str(bonus_attack))
+	
+	set_item_cell_colors(item)
+	
+	return item
 	
 func set_item_cell_colors(item):
 	for cell in item.cell_list:
