@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 300, 200 )
+extents = Vector2( 300, 170 )
 
 [node name="EncroachingDoom" type="KinematicBody2D"]
 
@@ -32,6 +32,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
+position = Vector2( 0, 30 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 __meta__ = {
