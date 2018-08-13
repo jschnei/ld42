@@ -7,7 +7,10 @@ path="res://.import/invalid_place_item.wav-c60c9e490a0f4ccfaa15fd0a1329f4a9.samp
 [deps]
 
 source_file="res://sounds/invalid_place_item.wav"
+source_md5="c1e69db74848d268651d087eabf54d7e"
+
 dest_files=[ "res://.import/invalid_place_item.wav-c60c9e490a0f4ccfaa15fd0a1329f4a9.sample" ]
+dest_md5="bcf1e576c319cb80fd27bd8e13ccd199"
 
 [params]
 

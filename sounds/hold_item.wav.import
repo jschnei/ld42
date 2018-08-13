@@ -7,7 +7,10 @@ path="res://.import/hold_item.wav-26e3bedab707aeaa49a0dc57304ee327.sample"
 [deps]
 
 source_file="res://sounds/hold_item.wav"
+source_md5="3ad22ccb2e3c7b09bc6958f4397a63d1"
+
 dest_files=[ "res://.import/hold_item.wav-26e3bedab707aeaa49a0dc57304ee327.sample" ]
+dest_md5="58af601de32f47fe920da02bc61487ed"
 
 [params]
 
