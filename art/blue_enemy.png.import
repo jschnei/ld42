@@ -7,7 +7,10 @@ path="res://.import/blue_enemy.png-557242175fcb9ea83617f8b3219afc5d.stex"
 [deps]
 
 source_file="res://art/blue_enemy.png"
+source_md5="40aedd7d82835e38758cfd6cfceb9566"
+
 dest_files=[ "res://.import/blue_enemy.png-557242175fcb9ea83617f8b3219afc5d.stex" ]
+dest_md5="99b0eba2398c9fd3282363a15a1ea033"
 
 [params]
 

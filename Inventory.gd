@@ -33,7 +33,7 @@ func _ready():
 	initialize_holding_area()
 	
 	# Uncomment if you want to test inventory by itself.
-	
+	"""
 	var item1 = item.instance()
 	item1.init([Vector2(0, 1), Vector2(0, 2), Vector2(0, 3)])
 
@@ -45,6 +45,7 @@ func _ready():
 		item.connect("right_clicked_on", self, "_item_right_clicked_on", [item])
 		item.stats().bonus_attack = 1
 		add_child(item)
+	"""
 	
 	
 func initialize_holding_area():
