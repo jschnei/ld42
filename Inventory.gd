@@ -147,6 +147,14 @@ func trash_item(item):
 	if item == holding_area.held_item:
 		holding_area.remove_item(item)
 	item.queue_free()
+	
+func trash_all_items():
+	for item in grid.items_in_grid:
+		trash_item(item)
+	if holding_area.held_item != null:
+		trash_item(holding_area.held_item)
+	if held_item != null:
+		trash_item(held_item)
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
