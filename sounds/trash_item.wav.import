@@ -7,7 +7,10 @@ path="res://.import/trash_item.wav-4616be2ad58b069689d796eaf2ab6cbd.sample"
 [deps]
 
 source_file="res://sounds/trash_item.wav"
+source_md5="800d198d7f26c70ecc30071cceedd1fd"
+
 dest_files=[ "res://.import/trash_item.wav-4616be2ad58b069689d796eaf2ab6cbd.sample" ]
+dest_md5="d5c887ee2128cc0bbd69a603a814675c"
 
 [params]
 

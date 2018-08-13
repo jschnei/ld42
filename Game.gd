@@ -89,6 +89,9 @@ var wave1 = {'enemies': [[StaticEnemy, Vector2(0, 100), 0.2], [StaticEnemy, Vect
 			 'has_wall': true}
 var wave2 = {'enemies': [[MovingEnemy, Vector2(0, 100), 0.6]],
 			 'has_wall': true}
+var rainbow_wave = {'enemies': [[GreenEnemy, Vector2(0, 100), 0.25], [RedEnemy, Vector2(-80, 100), 0.25], [BlueEnemy, Vector2(80, 100), 0.25]],
+					'has_wall': true}
+
 var boss_wave = {'enemies': [[ChameleonBoss, Vector2(-180, 50), 1.0]],
 				 'has_wall': true}
 
@@ -98,35 +101,41 @@ func _ready():
 	
 	randomize()
 	
-	var waves = [tutorial_wave,
-				 empty_wave,
-				 tutorial_wave2,
-				 tutorial_wave3,
-				 empty_wave,
-				 empty_wave,
-				 tutorial_wave4,
-				 empty_wave,
-				 tutorial_wave5,
-				 tutorial_wave6,
-				 empty_wave,
-				 tutorial_wave7,
-				 tutorial_wave8,
-				 empty_wave,
-				 empty_wave,
-				 tutorial_wave9,
-				 empty_wave,
-				 gen_wave(),
-				 gen_wave(),
-				 gen_wave(),
-				 gen_wave(),
-				 gen_wave(),
-				 gen_wave(),
-				 gen_wave(),
-				 gen_wave(),
-				 gen_wave(),
-				 gen_wave(),
-				 boss_wave]
+	var tutorial_waves = [tutorial_wave,
+						 empty_wave,
+						 tutorial_wave2,
+						 tutorial_wave3,
+						 empty_wave,
+						 empty_wave,
+						 tutorial_wave4,
+						 empty_wave,
+						 tutorial_wave5,
+						 tutorial_wave6,
+						 empty_wave,
+						 tutorial_wave7,
+						 tutorial_wave8,
+						 empty_wave,
+						 empty_wave,
+						 tutorial_wave9]
+	
+	var game_waves = [empty_wave,
+					  gen_easy_wave(1),
+				 	  gen_easy_wave(1),
+				 	  gen_easy_wave(2),
+				 	  gen_easy_wave(3),
+				 	  gen_easy_wave(3),
+				      gen_easy_wave(4),
+				      gen_medium_wave(7),
+				      gen_medium_wave(9),
+				      gen_medium_wave(10),
+				 	  gen_medium_wave(12),
+					  gen_colored_wave(15, 0),
+					  gen_colored_wave(15, 1),
+					  gen_colored_wave(15, 2),
+					  gen_rainbow_wave(20),
+				 	  boss_wave]
 				
+	var waves = tutorial_waves + game_waves
 	var num_waves = len(waves)
 	
 	# initialize waves
@@ -172,22 +181,50 @@ func _ready():
 				enemy.connect("death", wall, "weaken_wall")
 				wall.strength += 1
 
-func gen_wave():
-	var choice = randi() % 3
-	if choice == 0:
-		return wave1
-	elif choice == 1:
-		return wave2
-	elif choice == 2:
-		return random_colored_wave()
+func gen_easy_wave(level):
+	var choice = randf()
+	var wave
+	if choice < 0.6:
+		wave = wave1.duplicate()
+	else:
+		wave = wave2.duplicate()
+	
+	wave['level'] = level
+	return wave
+	
+func gen_medium_wave(level):
+	var choice = randf()
+	var wave
+	if choice < 0.2:
+		wave = wave1.duplicate()
+	elif choice < 0.4:
+		wave = wave2.duplicate()
+	elif choice < 0.7:
+		wave = random_colored_wave()
+	else:
+		wave = rainbow_wave.duplicate()
+	
+	wave['level'] = level
+	return wave
+	
+func gen_colored_wave(level, color_ind):
+	var wave = colored_wave(color_ind)
+	wave['level'] = level
+	return wave
+
+func gen_rainbow_wave(level):
+	var wave = rainbow_wave.duplicate()
+	wave['level'] = level
+	return wave
 
 func random_colored_wave():
+	return colored_wave(randi()%3)
+
+func colored_wave(color_ind):
 	var coloredEnemies = [RedEnemy, BlueEnemy, GreenEnemy]
-	var ind = randi() % 3
-	var enemyType = coloredEnemies[ind]
+	var enemyType = coloredEnemies[color_ind]
 	return {'enemies': [[enemyType, Vector2(0, 100), 0.25], [enemyType, Vector2(-80, 100), 0.25], [enemyType, Vector2(80, 100), 0.25]],
 			'has_wall': true}
-	
 			
 func _create_enemy(enemy_type, enemy_position, level, prob):
 	var enemy = enemy_type.instance()

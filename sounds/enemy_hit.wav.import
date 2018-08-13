@@ -7,7 +7,10 @@ path="res://.import/enemy_hit.wav-c9e9a2f7f111312b20d89c22f66cb7f7.sample"
 [deps]
 
 source_file="res://sounds/enemy_hit.wav"
+source_md5="b2de1a5e3f8b97a26a0b106199844f6f"
+
 dest_files=[ "res://.import/enemy_hit.wav-c9e9a2f7f111312b20d89c22f66cb7f7.sample" ]
+dest_md5="c68dca6365f2809e915573dad7acb0b9"
 
 [params]
 

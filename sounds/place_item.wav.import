@@ -7,7 +7,10 @@ path="res://.import/place_item.wav-17dd3ffaf0c760293377181a1840a196.sample"
 [deps]
 
 source_file="res://sounds/place_item.wav"
+source_md5="a1b59bdafdc1ca45a260b1b367a4ac95"
+
 dest_files=[ "res://.import/place_item.wav-17dd3ffaf0c760293377181a1840a196.sample" ]
+dest_md5="7aad9ca083342a1d036a38582bd1ea9b"
 
 [params]
 
