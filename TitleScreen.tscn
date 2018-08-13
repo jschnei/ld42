@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://art/background.png" type="Texture" id=2]
+[ext_resource path="res://otherassets/square_dynamicfont.tres" type="DynamicFont" id=3]
 
 [node name="TitleScreen" type="Control" index="0"]
 
@@ -70,19 +71,34 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-bbcode_enabled = false
-bbcode_text = "Space Game"
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]Space Game[/center]
+"
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
-text = "Space Game"
+text = "Space Game
+"
 scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
-_sections_unfolded = [ "BBCode", "Grow Direction", "Size Flags", "custom_constants", "custom_fonts" ]
+_sections_unfolded = [ "Anchor", "BBCode", "Margin", "Rect", "custom_colors", "custom_constants", "custom_fonts" ]
+
+[node name="FontTween" type="Tween" parent="." index="3"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+_sections_unfolded = [ "playback" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+
+[connection signal="tween_completed" from="FontTween" to="." method="_on_FontTween_tween_completed"]
 
 
