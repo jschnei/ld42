@@ -23,6 +23,8 @@ export (float) var catchup_margin = 400
 export (float) var wave_height = 400
 export (float) var rest_height = 200
 
+export (bool) var play_tutorial = true
+
 var empty_wave = {'enemies': [],
 				  'has_wall': false}
 var tutorial_wave = {'enemies': [],
@@ -135,7 +137,12 @@ func _ready():
 					  gen_rainbow_wave(20),
 				 	  boss_wave]
 				
-	var waves = tutorial_waves + game_waves
+		
+	var waves
+	if play_tutorial:
+		waves = tutorial_waves + game_waves
+	else:
+		waves = game_waves
 	var num_waves = len(waves)
 	
 	# initialize waves
