@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (float) var normal_speed = 30
 export (float) var catchup_speed = 95
+export (float) var slow_speed = 3
 
 var speed = normal_speed
 

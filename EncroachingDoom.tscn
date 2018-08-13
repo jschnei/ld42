@@ -19,6 +19,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 normal_speed = 35.0
 catchup_speed = 110.0
+slow_speed = 3
 
 [node name="head" type="Sprite" parent="." index="0"]
 
