@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Bullet.gd" type="Script" id=1]
 [ext_resource path="res://art/bullet.png" type="Texture" id=2]
+[ext_resource path="res://BulletStats.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -33,6 +34,8 @@ process_mode = 1
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="BulletStats" parent="." index="3" instance=ExtResource( 3 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 

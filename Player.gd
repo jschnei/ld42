@@ -63,7 +63,12 @@ func _on_BulletTimer_timeout():
 	if player_state == PLAYER_ACTIVE:
 		var bullet = Bullet.instance()
 		bullet.position = position
-		bullet.damage = total_attack()
+		var bullet_stats = bullet.get_node("BulletStats")
+		bullet_stats.base_damage = total_attack()
+		bullet_stats.red_damage = int($Stats.red_multiplier * total_attack())
+		bullet_stats.blue_damage = int($Stats.blue_multiplier * total_attack())
+		bullet_stats.green_damage = int($Stats.green_multiplier * total_attack())
+		
 		$bullets.add_child(bullet)
 
 func _on_StunTimer_timeout():
