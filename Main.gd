@@ -22,9 +22,12 @@ func _process(delta):
 	
 func _player_picked_up_item(game_item):
 	if inventory.can_pickup_item():
+		player.get_node("ItemPickup").play()
 		game_item.picked_up = true
 		inventory.pickup_item(game_item.item)
 		game_item.queue_free()
+	else:
+		player.get_node("FailedItemPickup").play()
 
 func _player_destroyed_all_items():
 	print("destroying all the items!")

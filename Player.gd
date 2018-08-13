@@ -43,7 +43,6 @@ func _process(delta):
 	
 func try_pick_up(game_item):
 	emit_signal("picked_up_item", game_item)
-	$ItemPickup.play()
 
 func take_damage(damage):
 	# stun player
