@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wall.png-a390048f5e12dd0b271d636d681186c9.stex"
+path="res://.import/gradient.png-f279435ff1ab6a5be18223bfcdc94265.stex"
 
 [deps]
 
-source_file="res://art/wall.png"
-dest_files=[ "res://.import/wall.png-a390048f5e12dd0b271d636d681186c9.stex" ]
+source_file="res://art/gradient.png"
+dest_files=[ "res://.import/gradient.png-f279435ff1ab6a5be18223bfcdc94265.stex" ]
 
 [params]
 
