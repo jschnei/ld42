@@ -46,6 +46,7 @@ func _ready():
 		add_child(item)
 	"""
 	
+	
 func initialize_holding_area():
 	holding_area = holding_area_scene.instance()
 	var sprite_size = holding_area.get_node("Sprite").get_texture().get_size()

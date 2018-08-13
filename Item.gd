@@ -5,6 +5,7 @@ signal clicked_on(cell_index)
 export (int) var CELL_SIZE
 
 var item_cell = preload("res://ItemCell.tscn")
+var cell_connector_scene = preload("res://ItemCellConnector.tscn")
 
 # These two lists should correspond to each other.
 var cell_point_list = []
@@ -25,6 +26,8 @@ func init(point_list):
 		var new_cell = create_and_add_cell(point_list[i])
 		new_cell.connect("clicked_on", self, "_cell_clicked_on", [i])
 		cell_list.append(new_cell)
+	
+	create_cell_connectors()
 					
 """func create_and_add_cell(point):
 	cell_point_list.append(point)
@@ -53,6 +56,18 @@ func create_and_add_cell(point):
 	
 	add_child(new_cell)
 	return new_cell
+	
+func create_cell_connectors():
+	for point in cell_point_list:
+		if (point + Vector2(1, 0)) in cell_point_list:
+			var cell_connector = cell_connector_scene.instance()
+			cell_connector.position = CELL_SIZE * (point + Vector2(.5, 0))
+			add_child(cell_connector)
+		if (point + Vector2(0, 1)) in cell_point_list:
+			var cell_connector = cell_connector_scene.instance()
+			cell_connector.position = CELL_SIZE * (point + Vector2(0, .5))
+			cell_connector.rotation = PI/2
+			add_child(cell_connector)
 	
 # Returns a vector with the (x,y) pixel coordinates of the "center"
 # of the item. Used for centering the item in the holding area.
