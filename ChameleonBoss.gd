@@ -2,11 +2,10 @@ extends "res://Enemy.gd"
 
 var Bullet = preload("res://Bullet.gd")
 
-var MAX_HEALTH = 9
-
 var red_boss_path = "res://art/red_boss.png"
 var green_boss_path = "res://art/green_boss.png"
 var blue_boss_path = "res://art/blue_boss.png"
+
 
 # 3 phases for now
 var phase = 1
@@ -15,8 +14,6 @@ var current_color
 var current_direction = Vector2(100, 0)
 
 func _ready():
-	$Stats.max_health = MAX_HEALTH
-	$Stats.cur_health = $Stats.max_health
 	change_color("RED")
 	pass
 
@@ -48,11 +45,11 @@ func change_color(color):
 	update_sprite()
 
 func _process(delta):
-	if current_color == "RED" and $Stats.cur_health <= MAX_HEALTH*2/3:
+	if current_color == "RED" and $Stats.cur_health <= $Stats.max_health*2/3:
 		print("woooo")
 		phase += 1
 		change_color("GREEN")
-	elif current_color == "GREEN" and $Stats.cur_health <= MAX_HEALTH/3:
+	elif current_color == "GREEN" and $Stats.cur_health <= $Stats.max_health/3:
 		phase += 1
 		change_color("BLUE")
 	
@@ -64,7 +61,7 @@ func _process(delta):
 			collider.queue_free()
 
 func set_level(level):
-	$Stats.max_health = 20*level
+	$Stats.max_health = 40*level
 	$Stats.cur_health = $Stats.max_health
 
 func _on_SpreadShotTimer_timeout():

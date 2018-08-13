@@ -18,6 +18,8 @@ var Wall = preload("res://Wall.tscn")
 var left_wall = 0
 var right_wall = 0
 
+var slowed = false
+
 export (float) var catchup_margin = 400
 
 export (float) var wave_height = 400
@@ -100,7 +102,13 @@ var rainbow_wave = {'enemies': [[GreenEnemy, Vector2(0, 100), 0.25], [RedEnemy, 
 					'has_wall': true}
 
 var boss_wave = {'enemies': [[ChameleonBoss, Vector2(-180, 50), 1.0]],
-				 'has_wall': true}
+				 'has_wall': true,
+				 'slow_doom': true,
+				 'tutorial_text': ['Oh no, a boss!']}
+
+var starting_wave =  {'enemies': [[DummyEnemy, Vector2(0, 100), 1.0]],
+					  'has_wall': true,
+					  'level': 1}
 
 func _ready():
 	left_wall = $Floor.position.x - $Floor.region_rect.end.x/2
@@ -129,6 +137,7 @@ func _ready():
 						 tutorial_wave9]
 	
 	var game_waves = [empty_wave,
+					  starting_wave,
 					  gen_easy_wave(1),
 				 	  gen_easy_wave(1),
 				 	  gen_easy_wave(2),
@@ -137,13 +146,13 @@ func _ready():
 				      gen_easy_wave(4),
 				      gen_medium_wave(7),
 				      gen_medium_wave(9),
-				      gen_medium_wave(10),
-				 	  gen_medium_wave(12),
-					  gen_colored_wave(15, 0),
-					  gen_colored_wave(15, 1),
-					  gen_colored_wave(15, 2),
-					  gen_rainbow_wave(20),
-				 	  boss_wave]
+				      gen_medium_wave(9),
+				 	  gen_medium_wave(11),
+					  gen_colored_wave(13, 0),
+					  gen_colored_wave(13, 1),
+					  gen_colored_wave(13, 2),
+					  gen_rainbow_wave(15),
+				 	  gen_boss_wave(20)]
 				
 		
 	var waves
@@ -178,6 +187,8 @@ func _ready():
 			tutorial_trigger.lines = wave['tutorial_text']
 			if 'end_tutorial' in wave and wave['end_tutorial']:
 				tutorial_trigger.destroy_items = true
+			if 'slow_doom' in wave:
+				tutorial_trigger.slow_doom = true
 			$TutorialTriggers.add_child(tutorial_trigger)
 		
 		if 'items' in wave:
@@ -188,7 +199,6 @@ func _ready():
 				$Items.add_child(new_item)
 		
 		for spawn in wave['enemies']:
-			print(spawn)
 			var enemy_position = $Player.position + displacement + spawn[1]
 			var enemy_item = null
 			if len(spawn) >= 4:
@@ -198,6 +208,11 @@ func _ready():
 			if wall:
 				enemy.connect("death_by_player", wall, "weaken_wall")
 				wall.strength += 1
+
+func gen_boss_wave(level):
+	var wave = boss_wave.duplicate()
+	wave['level'] = level
+	return wave
 
 func gen_easy_wave(level):
 	var choice = randf()
@@ -263,10 +278,17 @@ func _create_enemy(enemy_type, enemy_position, level, prob, item_to_drop):
 func _process(delta):
 	$Player.position.x = clamp($Player.position.x, left_wall, right_wall)
 	
-	if $Player.position.y < $EncroachingDoom.position.y - catchup_margin:
-		$EncroachingDoom.speed = $EncroachingDoom.catchup_speed
+	if slowed:
+		$EncroachingDoom.speed = $EncroachingDoom.slow_speed
 	else:
-		$EncroachingDoom.speed = $EncroachingDoom.normal_speed
+		if $Player.position.y < $EncroachingDoom.position.y - catchup_margin:
+			$EncroachingDoom.speed = $EncroachingDoom.catchup_speed
+		else:
+			$EncroachingDoom.speed = $EncroachingDoom.normal_speed
+
+func slow_doom():
+	print("slowing the doom!")
+	slowed = true
 
 func _enemy_dropped_item(enemy):
 	if enemy.item_to_drop != null:
