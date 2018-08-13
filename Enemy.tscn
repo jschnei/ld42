@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://EnemyBullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://art/enemy.png" type="Texture" id=3]
 [ext_resource path="res://Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://HealthBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://EnemyBehavior.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -46,6 +47,8 @@ one_shot = false
 autostart = true
 
 [node name="Bullets" type="Node" parent="." index="5"]
+
+[node name="EnemyBehavior" parent="." index="6" instance=ExtResource( 6 )]
 
 [connection signal="death" from="Stats" to="." method="_on_Stats_death"]
 
