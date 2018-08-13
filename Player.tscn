@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
@@ -8,13 +8,14 @@
 [ext_resource path="res://sounds/bullet.wav" type="AudioStream" id=6]
 [ext_resource path="res://sounds/explosion.wav" type="AudioStream" id=7]
 [ext_resource path="res://sounds/hitSound.wav" type="AudioStream" id=8]
+[ext_resource path="res://TutorialText.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 22.2804, 20.6733 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 position = Vector2( 531.873, 300.714 )
 input_pickable = true
@@ -120,6 +121,11 @@ volume_db = -30.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[node name="TutorialText" parent="." index="11" instance=ExtResource( 9 )]
+
+margin_top = -54.0
+margin_bottom = -34.0
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_BulletTimer_timeout"]
 

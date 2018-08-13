@@ -7,7 +7,10 @@ path="res://.import/inventorybackground.png-aa0694289a1d898913cf2e566446f565.ste
 [deps]
 
 source_file="res://art/inventorybackground.png"
+source_md5="fbbfd87014117ea45edab5be370f571c"
+
 dest_files=[ "res://.import/inventorybackground.png-aa0694289a1d898913cf2e566446f565.stex" ]
+dest_md5="5e8d41bcaafbad5d5bfeec2632778a69"
 
 [params]
 
