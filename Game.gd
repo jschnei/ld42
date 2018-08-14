@@ -143,7 +143,6 @@ func _ready():
 	
 	var game_waves = [empty_wave,
 					  starting_wave,
-					  end_wave,
 					  gen_easy_wave(1),
 				 	  gen_easy_wave(1),
 				 	  gen_easy_wave(2),
