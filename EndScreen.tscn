@@ -61,10 +61,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 306.0
-margin_top = 274.0
-margin_right = 610.0
-margin_bottom = 374.0
+margin_left = 209.0
+margin_top = 255.0
+margin_right = 684.0
+margin_bottom = 355.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -73,13 +73,13 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[center]Space Game[/center]
+bbcode_text = "[center]You won! Thanks for playing![/center]
 "
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
-text = "Space Game
+text = "You won! Thanks for playing!
 "
 scroll_active = true
 scroll_following = false
@@ -87,6 +87,17 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Anchor", "BBCode", "Margin", "Rect", "custom_colors", "custom_constants", "custom_fonts" ]
 
+[node name="FontTween" type="Tween" parent="." index="3"]
+
+repeat = true
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = true
+playback/speed = 1.0
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+
+[connection signal="tween_completed" from="FontTween" to="." method="_on_FontTween_tween_completed"]
 
 
