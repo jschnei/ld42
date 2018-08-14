@@ -5,7 +5,7 @@ extends Control
 # var b = "textvar"
 
 var color_array = [Color(1,0,0), Color(0,1,0), Color(0,0,1)]
-onready var scale_array = [$RichTextLabel.rect_scale, 4*$RichTextLabel.rect_scale]
+onready var scale_array = [$RichTextLabel.rect_scale, 1.5*$RichTextLabel.rect_scale]
 var color_index = 0
 var scale_index = 0
 
