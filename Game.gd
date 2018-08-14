@@ -106,6 +106,11 @@ var boss_wave = {'enemies': [[ChameleonBoss, Vector2(-180, 50), 1.0]],
 				 'slow_doom': true,
 				 'tutorial_text': ['Oh no, a boss!']}
 
+var end_wave = {'enemies': [],
+				'has_wall': false,
+				'end_game': true,
+				'tutorial_text': ['You won!']}
+
 var starting_wave =  {'enemies': [[DummyEnemy, Vector2(0, 100), 1.0]],
 					  'has_wall': true,
 					  'level': 1}
@@ -138,6 +143,7 @@ func _ready():
 	
 	var game_waves = [empty_wave,
 					  starting_wave,
+					  end_wave,
 					  gen_easy_wave(1),
 				 	  gen_easy_wave(1),
 				 	  gen_easy_wave(2),
@@ -152,7 +158,8 @@ func _ready():
 					  gen_colored_wave(13, 1),
 					  gen_colored_wave(13, 2),
 					  gen_rainbow_wave(15),
-				 	  gen_boss_wave(20)]
+				 	  gen_boss_wave(20),
+					  end_wave]
 				
 		
 	var waves
@@ -185,6 +192,8 @@ func _ready():
 			var tutorial_trigger = TutorialTrigger.instance()
 			tutorial_trigger.position = $Player.position + displacement + Vector2(0, wave_height)
 			tutorial_trigger.lines = wave['tutorial_text']
+			if 'end_game' in wave:
+				tutorial_trigger.end_game = true
 			if 'end_tutorial' in wave and wave['end_tutorial']:
 				tutorial_trigger.destroy_items = true
 			if 'slow_doom' in wave:

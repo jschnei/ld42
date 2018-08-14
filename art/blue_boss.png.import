@@ -7,7 +7,10 @@ path="res://.import/blue_boss.png-fb41b018f120e6ae5d741096386d9af2.stex"
 [deps]
 
 source_file="res://art/blue_boss.png"
+source_md5="ab956ab765105b3ee3cbd21c707bb918"
+
 dest_files=[ "res://.import/blue_boss.png-fb41b018f120e6ae5d741096386d9af2.stex" ]
+dest_md5="3aa5e4e6a037e1fd50281f982350fdbd"
 
 [params]
 

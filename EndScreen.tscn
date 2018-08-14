@@ -4,7 +4,7 @@
 [ext_resource path="res://art/background.png" type="Texture" id=2]
 [ext_resource path="res://otherassets/square_dynamicfont.tres" type="DynamicFont" id=3]
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

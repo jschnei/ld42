@@ -7,7 +7,10 @@ path="res://.import/item_cell_connector.png-ad7892a258006fb811f77bcd0bc2fd2e.ste
 [deps]
 
 source_file="res://art/item_cell_connector.png"
+source_md5="f6232b799c4f79967c6bc77e666ecb9c"
+
 dest_files=[ "res://.import/item_cell_connector.png-ad7892a258006fb811f77bcd0bc2fd2e.stex" ]
+dest_md5="98485b1a25228d7ccec900958e68bf44"
 
 [params]
 

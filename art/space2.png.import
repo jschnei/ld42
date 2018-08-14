@@ -7,7 +7,10 @@ path="res://.import/space2.png-c4f0b14b024e0ed697d77dc182d7f160.stex"
 [deps]
 
 source_file="res://art/space2.png"
+source_md5="23ef42ab57222deb775745650ca70dca"
+
 dest_files=[ "res://.import/space2.png-c4f0b14b024e0ed697d77dc182d7f160.stex" ]
+dest_md5="aac4bbc0cd74c27b86732c67bfe337e2"
 
 [params]
 

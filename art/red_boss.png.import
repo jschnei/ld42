@@ -7,7 +7,10 @@ path="res://.import/red_boss.png-2ed45ef9a829ccd25009d745d2f1904a.stex"
 [deps]
 
 source_file="res://art/red_boss.png"
+source_md5="152d3bb599a29fb27254e036dd3a7855"
+
 dest_files=[ "res://.import/red_boss.png-2ed45ef9a829ccd25009d745d2f1904a.stex" ]
+dest_md5="8347cb7e9dd8c9dbd5d927ec1429ad1e"
 
 [params]
 

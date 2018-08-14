@@ -7,7 +7,10 @@ path="res://.import/greyItemCell.png-66d11d85079ea7a9dd76e11703f750fd.stex"
 [deps]
 
 source_file="res://art/greyItemCell.png"
+source_md5="8f296541439864472537454d358dc4f1"
+
 dest_files=[ "res://.import/greyItemCell.png-66d11d85079ea7a9dd76e11703f750fd.stex" ]
+dest_md5="a94f49204f89ba84106313eaf659707e"
 
 [params]
 

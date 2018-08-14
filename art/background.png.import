@@ -7,7 +7,10 @@ path="res://.import/background.png-694afb2807fe739c9f0954541e14cf0b.stex"
 [deps]
 
 source_file="res://art/background.png"
+source_md5="3aed1924e6114fa2611c018f6596bbbd"
+
 dest_files=[ "res://.import/background.png-694afb2807fe739c9f0954541e14cf0b.stex" ]
+dest_md5="3f09f1238677e0a694c1819c9ff91648"
 
 [params]
 
