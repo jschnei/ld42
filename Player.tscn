@@ -16,7 +16,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 22.2804, 20.6733 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 531.873, 300.714 )
 input_pickable = true
@@ -95,6 +95,7 @@ autostart = false
 
 stream = ExtResource( 5 )
 volume_db = -30.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -103,6 +104,7 @@ bus = "Master"
 
 stream = ExtResource( 6 )
 volume_db = -10.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -110,7 +112,8 @@ bus = "Master"
 [node name="BulletSound" type="AudioStreamPlayer" parent="." index="9"]
 
 stream = ExtResource( 7 )
-volume_db = -30.0
+volume_db = -40.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -119,6 +122,7 @@ bus = "Master"
 
 stream = ExtResource( 8 )
 volume_db = -30.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
@@ -127,6 +131,7 @@ bus = "Master"
 
 stream = ExtResource( 9 )
 volume_db = -30.0
+pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
