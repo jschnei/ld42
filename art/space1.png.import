@@ -7,10 +7,7 @@ path="res://.import/space1.png-5023b513ca17df44790fcf930293cdb5.stex"
 [deps]
 
 source_file="res://art/space1.png"
-source_md5="3552bebbd9831cb296c2c31e3d8b42ce"
-
 dest_files=[ "res://.import/space1.png-5023b513ca17df44790fcf930293cdb5.stex" ]
-dest_md5="d20e2b978cc4d3d6a77ac6cb62797ba0"
 
 [params]
 

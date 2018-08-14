@@ -2,9 +2,9 @@ extends "res://Enemy.gd"
 
 var Bullet = preload("res://Bullet.gd")
 
-var red_boss_path = "res://art/red_boss.png"
-var green_boss_path = "res://art/green_boss.png"
-var blue_boss_path = "res://art/blue_boss.png"
+var red_boss_path = load(ProjectSettings.globalize_path("res://art/red_boss.png"))
+var green_boss_path = load(ProjectSettings.globalize_path("res://art/green_boss.png"))
+var blue_boss_path = load(ProjectSettings.globalize_path("res://art/blue_boss.png"))
 
 
 # 3 phases for now
@@ -32,11 +32,11 @@ func update_resistances():
 func update_sprite():
 	var texture = ImageTexture.new()
 	if current_color == "RED":
-		texture.load(red_boss_path)
+		texture = red_boss_path
 	elif current_color == "GREEN":
-		texture.load(green_boss_path)
+		texture = green_boss_path
 	elif current_color == "BLUE":
-		texture.load(blue_boss_path)
+		texture = blue_boss_path
 	$Sprite.texture = texture
 		
 func change_color(color):

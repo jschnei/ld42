@@ -3,9 +3,9 @@ extends Area2D
 signal clicked_on
 signal right_clicked_on
 
-var red_path = "res://art/redItemCell.png"
-var green_path = "res://art/greenItemCell.png"
-var blue_path = "res://art/blueItemCell.png"
+var red_path = load(ProjectSettings.globalize_path("res://art/redItemCell.png"))
+var green_path = load(ProjectSettings.globalize_path("res://art/greenItemCell.png"))
+var blue_path = load(ProjectSettings.globalize_path("res://art/blueItemCell.png"))
 
 enum ItemColor {RED, GREEN, BLUE, NONE}
 
@@ -15,11 +15,11 @@ func set_color(new_color):
 	color = new_color
 	var texture = ImageTexture.new()
 	if color == ItemColor.RED:
-		texture.load(red_path)
+		texture = red_path
 	elif color == ItemColor.GREEN:
-		texture.load(green_path)
+		texture = green_path
 	elif color == ItemColor.BLUE:
-		texture.load(blue_path)
+		texture = blue_path
 	$Sprite.texture = texture
 
 func _ready():

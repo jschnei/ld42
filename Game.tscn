@@ -137,7 +137,7 @@ bus = "Master"
 [node name="Music" type="AudioStreamPlayer" parent="." index="10"]
 
 stream = ExtResource( 10 )
-volume_db = -3.0
+volume_db = -20.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0

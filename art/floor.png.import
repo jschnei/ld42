@@ -7,10 +7,7 @@ path="res://.import/floor.png-f9cc33924475e04750e8c43aaa181733.stex"
 [deps]
 
 source_file="res://art/floor.png"
-source_md5="5fdba268588ae76bcdc5906f516e4c85"
-
 dest_files=[ "res://.import/floor.png-f9cc33924475e04750e8c43aaa181733.stex" ]
-dest_md5="de4283e62122ae76a2efde8a240e1d64"
 
 [params]
 

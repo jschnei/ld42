@@ -6,11 +6,11 @@ export (PackedScene) var Bullet = preload("Bullet.tscn")
 enum {PLAYER_ACTIVE, PLAYER_STUNNED, PLAYER_DEAD}
 var player_state = PLAYER_ACTIVE
 
-var normal_path = "res://art/player.png"
-var left_path = "res://art/player_moving_left.png"
-var right_path = "res://art/player_moving_right.png"
-var up_path = "res://art/player_moving_up.png"
-var down_path = "res://art/player_moving_down.png"
+var normal_path = load(ProjectSettings.globalize_path("res://art/player.png"))
+var left_path = load(ProjectSettings.globalize_path("res://art/player_moving_left.png"))
+var right_path = load(ProjectSettings.globalize_path("res://art/player_moving_right.png"))
+var up_path = load(ProjectSettings.globalize_path("res://art/player_moving_up.png"))
+var down_path = load(ProjectSettings.globalize_path("res://art/player_moving_down.png"))
 
 signal picked_up_item(item)
 signal destroyed_all_items
@@ -22,22 +22,21 @@ func _ready():
 
 	
 func _process(delta):
-	var texture = ImageTexture.new()
-	texture.load(normal_path)
+	var texture = normal_path
 	if player_state == PLAYER_ACTIVE:
 		var input_dir  = Vector2(0, 0)
 		if Input.is_action_pressed("ui_right"):
 			input_dir += Vector2(1, 0)
-			texture.load(right_path)
+			texture = right_path
 		elif Input.is_action_pressed("ui_left"):
 			input_dir += Vector2(-1, 0)
-			texture.load(left_path)
+			texture = left_path
 		if Input.is_action_pressed("ui_up"):
 			input_dir += Vector2(0, -1)
-			texture.load(up_path)
+			texture = up_path
 		elif Input.is_action_pressed("ui_down"):
 			input_dir += Vector2(0, 1)
-			texture.load(down_path)
+			texture = down_path
 		move_and_slide(SPEED*(input_dir.normalized()))
 	$Sprite.texture = texture
 	
